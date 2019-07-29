@@ -19,4 +19,12 @@ class Role extends Model
                 'society_id' => \Session::get('user.society_id')
             ]);
     }
+
+    /**
+     * Get the role permission list for the role.
+     */
+    public function rolePermissions()
+    {
+        return $this->hasMany('App\Models\RolePermission');
+    }
 }

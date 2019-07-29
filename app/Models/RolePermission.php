@@ -12,4 +12,6 @@ class RolePermission extends Model
      * @var array
      */
     protected $guarded = [];
+
+    
 }

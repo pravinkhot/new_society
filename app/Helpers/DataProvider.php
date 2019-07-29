@@ -31,6 +31,24 @@ class DataProvider
                     ];
                     break;
             }
+        } else if ($moduleName == 'flats') {
+            $breadcrumbList[] = [
+                'label' => 'Flats',
+                'url' => route('flats.index')
+            ];
+            switch ($actionName) {
+                case 'create':
+                    $breadcrumbList[] = [
+                        'label' => 'Create Flat',
+                    ];
+                    break;
+
+                case 'edit':
+                    $breadcrumbList[] = [
+                        'label' => 'Edit Flat',
+                    ];
+                    break;
+            }
         }
         return $breadcrumbList;
     }

@@ -16,8 +16,8 @@
                 <h5 class="breadcrumbs-title mt-0 mb-0">@yield('mainTitle')</h5>
                 <ol class="breadcrumbs mb-0">
                     @if(!empty($breadcrumbList))
-                        @foreach($breadcrumbList as $breadcrumb)
-                            @if(!isset($breadcrumb['url']))
+                        @foreach($breadcrumbList as $breadcrumbKey => $breadcrumb)
+                            @if($breadcrumbKey+1 == collect($breadcrumbList)->count())
                                 <li class="breadcrumb-item active">
                                     {{ $breadcrumb['label'] }}
                                 </li>

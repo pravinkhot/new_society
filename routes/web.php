@@ -23,14 +23,20 @@ Auth::routes([
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/setupNewSociety', 'HomeController@setupNewSociety')->name('setupNewSociety');
     Route::get('/societyList', 'HomeController@societyList')->name('societyList');
-    Route::get('/setSociety/{societyId}', 'HomeController@setSociety')->name('setSociety');
+    Route::get('/setSociety', 'HomeController@setSociety')->name('setSociety');
 
     Route::group(['middleware' => ['checkBasicConf']], function () {
-        Route::get('/home', 'HomeController@index')->name('dashboard');
+        Route::group(['middleware' => ['checkPermission:0']], function () {
+            Route::get('/home', 'HomeController@index')->name('dashboard');
+        });
 
-        //Member
-        Route::resource('members', 'MemberController');
-        //Wing
-        Route::resource('wings', 'WingController');
+        Route::group(['middleware' => ['checkPermission:1']], function () {
+            //Member
+            Route::resource('members', 'MemberController');
+            //Wing
+            Route::resource('wings', 'WingController');
+            //Flat
+            Route::resource('flats', 'FlatController');
+        });
     });
 });

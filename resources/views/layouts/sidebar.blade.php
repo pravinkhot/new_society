@@ -1,3 +1,7 @@
+<?php
+    $allEntityPermissions = \Request::get('permissionDetails')['allEntityPermissions'];
+    $entityList = array_flip(CommonFunction::getEntityList());
+?>
 <!-- BEGIN: SideNav-->
 <aside id="side-menu" class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-light sidenav-active-square">
     <div class="brand-sidebar">
@@ -11,34 +15,69 @@
             </a>
         </h1>
     </div>
-    <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" data-menu="menu-navigation" data-collapsible="menu-accordion">
-        <li class="bold">
-            <a class="waves-effect waves-cyan" href="{{ route('dashboard') }}">
-                <i class="material-icons">settings_input_svideo</i>
-                <span class="menu-title">Dashboard</span>
-            </a>
-        </li>
 
-        <li class="bold">
-            <a class="collapsible-header waves-effect waves-cyan ">
-                <i class="material-icons">cast</i><span class="menu-title">Members</span>
-            </a>
-            <div class="collapsible-body">
-                <ul class="collapsible collapsible-sub" data-collapsible="accordion">
-                    <li>
-                        <a class="collapsible-body" href="{{ route('members.index') }}">
-                            <i class="material-icons">radio_button_unchecked</i>
-                            <span>Members</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="collapsible-body" href="{{ route('members.create') }}">
-                            <i class="material-icons">radio_button_unchecked</i>
-                            <span>Create Member</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </li>
+    <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" data-menu="menu-navigation" data-collapsible="menu-accordion">
+        @if(!empty(\Session::get('user.society_id')))
+            <li class="bold">
+                <a class="waves-effect waves-cyan" href="{{ route('dashboard') }}">
+                    <i class="material-icons">settings_input_svideo</i>
+                    <span class="menu-title">Dashboard</span>
+                </a>
+            </li>
+
+            <li class="bold">
+                <a class="collapsible-header waves-effect waves-cyan ">
+                    <i class="nav-icon fa fa-users"></i>
+                    <span class="menu-title">Members</span>
+                </a>
+                <div class="collapsible-body">
+                    <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                        @if(array_key_exists('member', $entityList) && $allEntityPermissions[$entityList['member']]['view'])
+                            <li>
+                                <a class="collapsible-body" href="{{ route('members.index') }}">
+                                    <i class="material-icons">radio_button_unchecked</i>
+                                    <span>Members</span>
+                                </a>
+                            </li>
+                            @if($allEntityPermissions[$entityList['member']]['add'])
+                                <li>
+                                    <a class="collapsible-body" href="{{ route('members.create') }}">
+                                        <i class="material-icons">radio_button_unchecked</i>
+                                        <span>Create Member</span>
+                                    </a>
+                                </li>
+                            @endif
+                        @endif
+                    </ul>
+                </div>
+            </li>
+
+            <li class="bold">
+                <a class="collapsible-header waves-effect waves-cyan ">
+                    <i class="fa fa-building" aria-hidden="true"></i>
+                    <span class="menu-title">Flats</span>
+                </a>
+                <div class="collapsible-body">
+                    <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                        @if(array_key_exists('flat', $entityList) && $allEntityPermissions[$entityList['flat']]['view'])
+                            <li>
+                                <a class="collapsible-body" href="{{ route('flats.index') }}">
+                                    <i class="material-icons">radio_button_unchecked</i>
+                                    <span>Flats</span>
+                                </a>
+                            </li>
+                            @if($allEntityPermissions[$entityList['flat']]['add'])
+                                <li>
+                                    <a class="collapsible-body" href="{{ route('flats.create') }}">
+                                        <i class="material-icons">radio_button_unchecked</i>
+                                        <span>Create Flat</span>
+                                    </a>
+                                </li>
+                            @endif
+                        @endif
+                    </ul>
+                </div>
+            </li>
+        @endif
      </ul>
 </aside>

@@ -41,7 +41,6 @@
                             <div class="col s12 m12 l12 ml-2 mt-1">
                                 <p>
                                     <label>
-                                        <input type="checkbox" />
                                         <input type="checkbox" name="remember" id="remember" value="" aria-required="true" {{ old('remember') ? 'checked' : '' }}>
                                         <span>Remember Me</span>
                                     </label>

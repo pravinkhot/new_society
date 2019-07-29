@@ -7,13 +7,12 @@ $(document).ready(function () {
          * @return void
          */
         var submitFormSuccessCallback = function (data) {
-            if($.inArray(data.moduleName, ['wing', 'member']) !== -1) {
+            if($.inArray(data.moduleName, ['wing', 'member', 'flat']) !== -1) {
                 redirectURL = data.moduleName+'s';
             } else {
                 switch (data.action) {
                     case 'create':
                         switch (data.moduleName) {
-                            case 'unit':
                             case 'service':
                             case 'notice':
                             case 'event':
@@ -30,7 +29,6 @@ $(document).ready(function () {
 
                     case 'edit':
                         switch (data.moduleName) {
-                            case 'unit':
                             case 'service':
                             case 'notice':
                             case 'event':

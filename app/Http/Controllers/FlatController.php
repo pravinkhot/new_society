@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use Illuminate\Validation\Rule;
 
-use App\Helpers\CommonFunction;
+use App\Models\Flat as FlatModel;
 
-use App\User as UserModel;
-use App\Models\UserSociety as UserSocietyModel;
-
-class MemberController extends Controller
+class FlatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,10 +17,10 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $memberList = UserModel::orderBy('users.created_at', 'DESC')
+        $flatList = FlatModel::orderBy('flats.created_at', 'DESC')
                     ->paginate(config('custom.defaultPaginationCount'));
-        return view('members.index', [
-            'memberList' => $memberList
+        return view('flats.index', [
+            'flatList' => $flatList
         ]);
     }
 
@@ -33,7 +31,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        return view('members.create');
+        return view('flats.create');
     }
 
     /**
@@ -45,7 +43,7 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         $inputs = $request->except('_method');
-        return $this->doDbAction($inputs, new UserModel());
+        return $this->doDbAction($inputs, new FlatModel());
     }
 
     /**
@@ -67,12 +65,9 @@ class MemberController extends Controller
      */
     public function edit($id)
     {
-        if (\Auth::id() == $id) {
-            abort(403);
-        }
-        $memberDetail = UserModel::findOrfail($id);
-        return view('members.edit', [
-            'memberDetail' => $memberDetail
+        $flatDetail = FlatModel::findOrfail($id);
+        return view('flats.edit', [
+            'flatDetail' => $flatDetail
         ]);
     }
 
@@ -85,9 +80,9 @@ class MemberController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $memberModel = UserModel::find($id);
+        $flatModel = FlatModel::find($id);
         $inputs = $request->except('_method');
-        return $this->doDbAction($inputs, $memberModel);
+        return $this->doDbAction($inputs, $flatModel);
     }
 
     /**
@@ -108,7 +103,7 @@ class MemberController extends Controller
      * @param  \App\User  $user
      * @return void
      */
-    private function doDbAction(array $inputs, UserModel $dbModelObject)
+    private function doDbAction(array $inputs, FlatModel $dbModelObject)
     {
         $validator = $this->validator($inputs, $dbModelObject->id ?? null);
 
@@ -118,46 +113,27 @@ class MemberController extends Controller
                 'errors' => $validator->errors()
             ], 422);
         } else {
-            $userTableColumns = [
-                'first_name', 'last_name', 'gender', 'email', 'mobile_no', 'dob'
+            $flatTableColumns = [
+                'wing_id', 'flat_status_id', 'flat_no', 'sq_foot', 'intercom', 'owner_fn', 'owner_ln', 'owner_number'
             ];
-            $result = [];
-            foreach ($userTableColumns as $userTableColumn) {
-                $dbModelObject->$userTableColumn = $inputs[$userTableColumn] ?? null;
+
+            foreach ($flatTableColumns as $flatTableColumn) {
+                $dbModelObject->$flatTableColumn = $inputs[$flatTableColumn] ?? null;
             }
+            $dbModelObject->society_id = \Session::get('user.society_id');
 
             if (empty($dbModelObject->id)) {
                 $dbModelObject->created_by = \Auth::user()->id;
-                $rawPassword = CommonFunction::randomPasswordGenerator();
-                $dbModelObject->password = $rawPassword;
-
                 $dbModelObject->save();
                 $dbMethod = 'create';
-                $successMsg = 'Member added successfully.';
+                $successMsg = 'Flat added successfully.';
             } else {
                 $dbModelObject->updated_by = \Auth::user()->id;
                 $dbMethod = 'update';
-                $successMsg = 'Member updated successfully.';
+                $successMsg = 'Flat updated successfully.';
             }
             $dbModelObject->save();
 
-            UserSocietyModel::where([
-                'user_id' => $dbModelObject->id,
-                'society_id' => \Session::get('user.society_id')
-            ])
-            ->delete();
-           
-            $userSocietyModel = new UserSocietyModel();
-            $userSocietyModel->society_id = \Session::get('user.society_id');
-            $userSocietyModel->user_id = $dbModelObject->id;
-            $userSocietyModel->role_id = $inputs['role_id'] ?? null;
-            $userSocietyModel->save();
-
-            if ($dbMethod == 'create') {
-                // $dbModelObject->setAttribute('rawPassword', $rawPassword);
-                // $dbModelObject->sendEmailVerificationNotification();
-                // $dbModelObject->offsetUnset('rawPassword');
-            }
             return response()->json([
                 'success' => true,
                 'message' => $successMsg
@@ -169,31 +145,35 @@ class MemberController extends Controller
      * Get a validator for an incoming event request.
      *
      * @param  array  $data
-     * @param  mix  $memberId
+     * @param  mix  $flatId
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    private function validator(array $data, $memberId = null)
+    private function validator(array $data, $flatId = null)
     {
         $rules = [
-            'first_name' => ['required','max:50'],
-            'middle_name' => ['max:50'],
-            'last_name' => ['required','max:50'],
-            'gender' => 'required',
-            'dob' => 'required',
-            'email' => [
+            'flat_no' => [
                 'required',
-                'email',
-                Rule::unique('users')->ignore($memberId)
+                'max:50',
+                Rule::unique('flats')->ignore($flatId)->where(function ($query) use ($data) {
+                    return $query->where('wing_id', $data['wing_id']);
+                })
             ],
-            'mobile_no' => [
+            'wing_id' => ['required'],
+            'sq_foot' => ['regex:/^\d*(\.\d{2})?$/'],
+            'flat_status_id' => 'required',
+            'owner_fn' => 'required',
+            'owner_ln' => 'required',
+            'owner_number' => [
                 'required',
                 'integer',
                 'digits:10'
-            ],
-            'role_id' => 'required'
+            ]
         ];
         $messages = [
-            'mobile_no.integer' => 'The mobile no must be a number.'
+            'owner_fn.required' => 'The owner first name field is required.',
+            'owner_ln.required' => 'The owner last name field is required.',
+            'owner_number.integer' => 'The mobile no must be a number.',
+            'sq_foot.regex' => 'Please enter valid number like XXXXX.XX'
         ];
         return \Validator::make($data, $rules, $messages);
     }

@@ -6,10 +6,10 @@ $(document).ready(function () {
     //     $("#side-menu .sidenav li a").each(function() {
     //         var thisUrl = $(this).attr('href');
     //         if (thisUrl == currentHref) {
+    //             console.log($(this));
     //             $(this).addClass('active');
     //             $(this).parent().addClass('active');
-    //             $(this).parent().parent().parent().parent().css('display', 'block');
-    //             $(this).parent().parent().parent().parent().addClass('active open');
+    //             $(this).parent().parent().parent().parent().addClass('active');
     //             a_href_found_flag = true;
     //         }
     //     });

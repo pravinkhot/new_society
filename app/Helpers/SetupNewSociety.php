@@ -50,7 +50,15 @@ class SetupNewSociety
             ];
 
             foreach ($entityActionList as $entityAction) {
-                $result[$entityAction] = 1;
+                if ($roleId == 1) {
+                    $result[$entityAction] = 1;
+                } else {
+                    if ($roleId == 2 && $entityAction == 'view') {
+                        $result[$entityAction] = 1;
+                    } else {
+                        $result[$entityAction] = 0;
+                    }
+                }
             }
             $rolePermissionModel = new RolePermissionModel();
             $rolePermissionModel->fill($result);

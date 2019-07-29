@@ -12,4 +12,11 @@ class Entity extends Model
      * @var array
      */
     protected $guarded = [];
+
+    public function newQuery($excludeDeleted = true) {
+        return parent::newQuery($excludeDeleted)
+            ->where([
+                'society_id' => \Session::get('user.society_id')
+            ]);
+    }
 }
