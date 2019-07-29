@@ -49,7 +49,34 @@ class DataProvider
                     ];
                     break;
             }
+        } else if ($moduleName == 'expenses') {
+            $breadcrumbList[] = [
+                'label' => 'Expenses',
+                'url' => route('expenses.index')
+            ];
+            switch ($actionName) {
+                case 'create':
+                    $breadcrumbList[] = [
+                        'label' => 'Create Expense',
+                    ];
+                    break;
+
+                case 'edit':
+                    $breadcrumbList[] = [
+                        'label' => 'Edit Expense',
+                    ];
+                    break;
+            }
         }
         return $breadcrumbList;
+    }
+
+    public static function getPaymentModeList(): array
+    {
+        return [
+            1 => 'Cash',
+            2 => 'Cheque',
+            3 => 'Other'
+        ];
     }
 }

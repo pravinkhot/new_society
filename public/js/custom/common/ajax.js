@@ -7,7 +7,7 @@ $(document).ready(function () {
          * @return void
          */
         var submitFormSuccessCallback = function (data) {
-            if($.inArray(data.moduleName, ['wing', 'member', 'flat']) !== -1) {
+            if($.inArray(data.moduleName, ['wing', 'member', 'flat', 'expense']) !== -1) {
                 redirectURL = data.moduleName+'s';
             } else {
                 switch (data.action) {
@@ -19,10 +19,6 @@ $(document).ready(function () {
                             case 'role':
                             case 'complaint':
                                 redirectURL = data.moduleName+'s';
-                            break;
-
-                            case 'expense':
-                                redirectURL = 'accounts/expenses';
                             break;
                         }
                     break;
@@ -36,10 +32,6 @@ $(document).ready(function () {
                             case 'setting':
                             case 'complaint':
                                 redirectURL = data.moduleName+'s';
-                            break;
-
-                            case 'expense':
-                                redirectURL = 'accounts/expenses';
                             break;
                         }
                     break;

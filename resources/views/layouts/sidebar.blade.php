@@ -52,14 +52,14 @@
                 </div>
             </li>
 
-            <li class="bold">
-                <a class="collapsible-header waves-effect waves-cyan ">
-                    <i class="fa fa-building" aria-hidden="true"></i>
-                    <span class="menu-title">Flats</span>
-                </a>
-                <div class="collapsible-body">
-                    <ul class="collapsible collapsible-sub" data-collapsible="accordion">
-                        @if(array_key_exists('flat', $entityList) && $allEntityPermissions[$entityList['flat']]['view'])
+            @if(array_key_exists('flat', $entityList) && $allEntityPermissions[$entityList['flat']]['view'])
+                <li class="bold">
+                    <a class="collapsible-header waves-effect waves-cyan ">
+                        <i class="fa fa-building" aria-hidden="true"></i>
+                        <span class="menu-title">Flats</span>
+                    </a>
+                    <div class="collapsible-body">
+                        <ul class="collapsible collapsible-sub" data-collapsible="accordion">
                             <li>
                                 <a class="collapsible-body" href="{{ route('flats.index') }}">
                                     <i class="material-icons">radio_button_unchecked</i>
@@ -74,10 +74,37 @@
                                     </a>
                                 </li>
                             @endif
-                        @endif
-                    </ul>
-                </div>
-            </li>
+                        </ul>
+                    </div>
+                </li>
+            @endif
+
+            @if(array_key_exists('expense', $entityList) && !empty($allEntityPermissions[$entityList['expense']]['view']))
+                <li class="bold">
+                    <a class="collapsible-header waves-effect waves-cyan ">
+                        <i class="nav-icon fa fa-money" aria-hidden="true"></i>
+                        <span class="menu-title">Expenses</span>
+                    </a>
+                    <div class="collapsible-body">
+                        <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                            <li>
+                                <a class="collapsible-body" href="{{ route('expenses.index') }}">
+                                    <i class="material-icons">radio_button_unchecked</i>
+                                    <span>Expenses</span>
+                                </a>
+                            </li>
+                            @if($allEntityPermissions[$entityList['expense']]['add'])
+                                <li>
+                                    <a class="collapsible-body" href="{{ route('expenses.create') }}">
+                                        <i class="material-icons">radio_button_unchecked</i>
+                                        <span>Create Expense</span>
+                                    </a>
+                                </li>
+                            @endif
+                        </ul>
+                    </div>
+                </li>
+            @endif
         @endif
      </ul>
 </aside>

@@ -75,8 +75,16 @@ class SetupNewSociety
                 'order' => 1,
                 'society_id' => $societyId
             ], [
-                'name' => 'wing',
+                'name' => 'flat',
                 'order' => 2,
+                'society_id' => $societyId
+            ], [
+                'name' => 'expense',
+                'order' => 3,
+                'society_id' => $societyId
+            ], [
+                'name' => 'wing',
+                'order' => 4,
                 'society_id' => $societyId
             ]
         ];

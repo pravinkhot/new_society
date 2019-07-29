@@ -68,6 +68,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             baseUrl = "{{ url('/') }}";
+            baseUrlWOParameter = baseUrl+'/'+"{{ \Request::segment(1) }}";
         });
     </script>
 

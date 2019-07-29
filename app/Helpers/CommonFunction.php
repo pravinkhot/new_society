@@ -5,6 +5,7 @@ use App\Models\Entity as EntityModel;
 use App\Models\Role as RoleModel;
 use App\Models\Wing as WingModel;
 use App\Models\MemberType as MemberTypeModel;
+use App\Models\ExpenseCategory as ExpenseCategoryModel;
 
 class CommonFunction
 {
@@ -66,6 +67,16 @@ class CommonFunction
     public static function getMemberTypeList()
     {
         return MemberTypeModel::pluck('name', 'id')->toArray();
+    }
+
+    /**
+     * This function is used to return expense category list
+     *
+     * @return array
+     */
+    public static function getExpenseCategoryList()
+    {
+        return ExpenseCategoryModel::pluck('name', 'id')->toArray();
     }
 
     /**

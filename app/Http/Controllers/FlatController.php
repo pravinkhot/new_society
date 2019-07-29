@@ -100,7 +100,7 @@ class FlatController extends Controller
      * Perform validation and database action
      *
      * @param  array  $data
-     * @param  \App\User  $user
+     * @param  \App\Models\Flat  $dbModelObject
      * @return void
      */
     private function doDbAction(array $inputs, FlatModel $dbModelObject)
@@ -124,7 +124,6 @@ class FlatController extends Controller
 
             if (empty($dbModelObject->id)) {
                 $dbModelObject->created_by = \Auth::user()->id;
-                $dbModelObject->save();
                 $dbMethod = 'create';
                 $successMsg = 'Flat added successfully.';
             } else {

@@ -37,6 +37,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::resource('wings', 'WingController');
             //Flat
             Route::resource('flats', 'FlatController');
+
+            Route::namespace('Expense')->group(function () {
+                //Expense
+                Route::resource('expenses', 'ExpenseController');
+            });
         });
     });
 });

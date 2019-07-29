@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
-@section('mainTitle', 'Flats')
+@section('mainTitle', 'Expenses')
 
 @section('content')
     <?php
         $currentEntityPermissions = \Request::get('permissionDetails')['currentEntityPermissions'];
+        $paymentModeList = \App\Helpers\DataProvider::getPaymentModeList();
     ?>
     <div class="row">
         <div class="col s12">
@@ -13,13 +14,13 @@
                     <div class="card-title">
                         <div class="row">
                             <div class="col s12 m6 l10">
-                                <h4 class="card-title">Flat List</h4>
+                                <h4 class="card-title">Expense List</h4>
                             </div>
                             <div class="col s12 m6 l2">
                                 @if(isset($currentEntityPermissions['add']) && $currentEntityPermissions['add'] == 1)
                                     <ul class="tabs">
                                         <li class="tab col s6 p-0">
-                                            <a class="p-0" href="{{ route('flats.create') }}" target="_self">
+                                            <a class="p-0" href="{{ route('expenses.create') }}" target="_self">
                                                 Create
                                             </a>
                                         </li>
@@ -34,7 +35,7 @@
                                 <table>
                                     <?php
                                         $theadList = [
-                                            'Flat No', 'Wing', 'Owner Name', 'Owner Mobile No.', 'Intercom', 'Area', 'Status'
+                                            'Expense Category', 'Vendor Name', 'Amount', 'Payment Mode', 'Payment Date', 'Created By'
                                         ];
                                     ?>
                                     <thead>
@@ -48,27 +49,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if($flatList->count() > 0)
-                                            @foreach($flatList as $flat)
-                                                <tr id="{{ $flat->id }}">
-                                                    <td>{{ $flat->flat_no }}</td>
-                                                    <td>{{ $flat->getFlatWing->name }}</td>
-                                                    <td>{{ $flat->owner_full_name }}</td>
-                                                    <td>{{ $flat->owner_number }}</td>
-                                                    <td>{{ $flat->intercom }}</td>
-                                                    <td>{{ $flat->sq_foot }}</td>
-                                                    <td>{{ $flat->getFlatStatus->name }}</td>
+                                        @if($expenseList->count() > 0)
+                                            @foreach($expenseList as $expense)
+                                                <tr id="{{ $expense->id }}">
+                                                    <td>{{ $expense->getExpenseCategory->name }}</td>
+                                                    <td>{{ $expense->vendor_name }}</td>
+                                                    <td>{{ $expense->amount }}</td>
+                                                    <td>{{ $paymentModeList[$expense->payment_mode_id] }}</td>
+                                                    <td>{{ $expense->payment_date }}</td>
+                                                    <td>{{ $expense->getCreatedByUser->full_name }}</td>
                                                     @if(isset($currentEntityPermissions['edit']) && $currentEntityPermissions['edit'] == 1)
                                                         <td>
-                                                            <a href="{{ route('flats.edit', ['flatId' => $flat->id]) }}" rel="tooltip" class="btn-floating cyan" data-original-title="Edit Flat" title="">
+                                                            <a href="{{ route('expenses.edit', ['expenseId' => $expense->id]) }}" rel="tooltip" class="btn-floating cyan" data-original-title="Edit Expense" title="">
                                                                 <i class="material-icons">edit</i>
                                                             </a>
-                                                            {{-- <button type="button" rel="tooltip" class="btn-floating waves-effect waves-light btn-danger singleDelete ladda-button" data-original-title="Delete Flat" title="" data-style="zoom-in">
-                                                                <i class="material-icons dp48">delete</i>
-                                                            </button> --}}
                                                         </td>
                                                     @endif
                                                 </tr>
+
                                             @endforeach
                                         @else
                                             <tr>
@@ -89,7 +87,7 @@
 @section('customJs')
     <script type="text/javascript">
         $(document).ready(function () {
-            deleteConfirmMsg = 'Are you sure you want to delete this Flat?';
+            deleteConfirmMsg = 'Are you sure you want to delete this Expense?';
         });
     </script>
 @endsection
