@@ -1,0 +1,28 @@
+<?php
+namespace App\Models\Members;
+
+use App\Models\BaseModel;
+use App\Models\Members\Member;
+
+class MemberModel extends BaseModel
+{
+    use Member, MemberAttribute;
+
+    protected $table = 'users';
+
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+}

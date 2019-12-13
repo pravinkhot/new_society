@@ -6,8 +6,8 @@
 <aside id="side-menu" class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-light sidenav-active-square">
     <div class="brand-sidebar">
         <h1 class="logo-wrapper">
-            <a class="brand-logo darken-1" href="index.html">
-                <img src="https://pixinvent.com/materialize-material-design-admin-template/app-assets/images/logo/materialize-logo-color.png" alt="materialize logo"/>
+            <a class="brand-logo darken-1" href="{{ route('dashboard') }}">
+                <img src="https://materializecss.com/res/materialize.svg" alt="materialize logo"/>
                 <span class="logo-text hide-on-med-and-down">Aapli Society</span>
             </a>
             <a class="navbar-toggler">

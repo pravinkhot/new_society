@@ -66,6 +66,11 @@ class DataProvider
                         'label' => 'Edit Expense',
                     ];
                     break;
+                case 'viewInvoice':
+                    $breadcrumbList[] = [
+                        'label' => 'View Invoice',
+                    ];
+                    break;
             }
         }
         return $breadcrumbList;

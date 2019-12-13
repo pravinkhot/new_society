@@ -3,26 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-
-use App\Helpers\CommonFunction;
-
-use App\User as UserModel;
-use App\Models\UserSociety as UserSocietyModel;
+use App\Models\Members\MemberModel;
+use App\Http\Requests\Members\Member as MemberRequest;
 
 class MemberController extends Controller
 {
+    private $memberModel;
+
+    function __construct(MemberModel $memberModel)
+    {
+        $this->memberModel = $memberModel;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $memberList = UserModel::orderBy('users.created_at', 'DESC')
-                    ->paginate(config('custom.defaultPaginationCount'));
         return view('members.index', [
-            'memberList' => $memberList
+            'memberList' => $this->memberModel->getMemberListWithPaginate($request)
         ]);
     }
 
@@ -39,13 +40,16 @@ class MemberController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Requests\Members\Member  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MemberRequest $request)
     {
-        $inputs = $request->except('_method');
-        return $this->doDbAction($inputs, new UserModel());
+        return response()->json([
+            'success' => true,
+            'message' => 'Member added successfully.',
+            'data' => $this->memberModel->saveMember($request, $id = 0)
+        ], 200);
     }
 
     /**
@@ -70,24 +74,25 @@ class MemberController extends Controller
         if (\Auth::id() == $id) {
             abort(403);
         }
-        $memberDetail = UserModel::findOrfail($id);
         return view('members.edit', [
-            'memberDetail' => $memberDetail
+            'memberDetail' => $this->memberModel->getMemberDetail($id)
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Requests\Members\Member  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MemberRequest $request, $id)
     {
-        $memberModel = UserModel::find($id);
-        $inputs = $request->except('_method');
-        return $this->doDbAction($inputs, $memberModel);
+        return response()->json([
+            'success' => true,
+            'message' => 'Member updated successfully.',
+            'data' => $this->memberModel->saveMember($request, $id)
+        ], 200);
     }
 
     /**
@@ -99,102 +104,5 @@ class MemberController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    /**
-     * Perform validation and database action
-     *
-     * @param  array  $data
-     * @param  \App\User  $user
-     * @return void
-     */
-    private function doDbAction(array $inputs, UserModel $dbModelObject)
-    {
-        $validator = $this->validator($inputs, $dbModelObject->id ?? null);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'errors' => $validator->errors()
-            ], 422);
-        } else {
-            $userTableColumns = [
-                'first_name', 'last_name', 'gender', 'email', 'mobile_no', 'dob'
-            ];
-            $result = [];
-            foreach ($userTableColumns as $userTableColumn) {
-                $dbModelObject->$userTableColumn = $inputs[$userTableColumn] ?? null;
-            }
-
-            if (empty($dbModelObject->id)) {
-                $dbModelObject->created_by = \Auth::user()->id;
-                $rawPassword = CommonFunction::randomPasswordGenerator();
-                $dbModelObject->password = $rawPassword;
-
-                $dbModelObject->save();
-                $dbMethod = 'create';
-                $successMsg = 'Member added successfully.';
-            } else {
-                $dbModelObject->updated_by = \Auth::user()->id;
-                $dbMethod = 'update';
-                $successMsg = 'Member updated successfully.';
-            }
-            $dbModelObject->save();
-
-            UserSocietyModel::where([
-                'user_id' => $dbModelObject->id,
-                'society_id' => \Session::get('user.society_id')
-            ])
-            ->delete();
-           
-            $userSocietyModel = new UserSocietyModel();
-            $userSocietyModel->society_id = \Session::get('user.society_id');
-            $userSocietyModel->user_id = $dbModelObject->id;
-            $userSocietyModel->role_id = $inputs['role_id'] ?? null;
-            $userSocietyModel->save();
-
-            if ($dbMethod == 'create') {
-                // $dbModelObject->setAttribute('rawPassword', $rawPassword);
-                // $dbModelObject->sendEmailVerificationNotification();
-                // $dbModelObject->offsetUnset('rawPassword');
-            }
-            return response()->json([
-                'success' => true,
-                'message' => $successMsg
-            ], 200);
-        }
-    }
-
-    /**
-     * Get a validator for an incoming event request.
-     *
-     * @param  array  $data
-     * @param  mix  $memberId
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    private function validator(array $data, $memberId = null)
-    {
-        $rules = [
-            'first_name' => ['required','max:50'],
-            'middle_name' => ['max:50'],
-            'last_name' => ['required','max:50'],
-            'gender' => 'required',
-            'dob' => 'required',
-            'email' => [
-                'required',
-                'email',
-                Rule::unique('users')->ignore($memberId)
-            ],
-            'mobile_no' => [
-                'required',
-                'integer',
-                'digits:10'
-            ],
-            'role_id' => 'required'
-        ];
-        $messages = [
-            'mobile_no.integer' => 'The mobile no must be a number.'
-        ];
-        return \Validator::make($data, $rules, $messages);
     }
 }

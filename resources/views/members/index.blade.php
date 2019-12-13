@@ -69,6 +69,10 @@
                                         @endif
                                     </tbody>
                                 </table>
+
+                                @if($memberList->count() > 0)
+                                    {{ $memberList->links() }}
+                                @endif
                             </div>
                         </div>
                     </div>

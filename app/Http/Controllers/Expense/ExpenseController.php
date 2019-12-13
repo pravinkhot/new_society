@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
 
 use App\Models\Expense as ExpenseModel;
+use App\Models\Society as SocietyModel;
 
 class ExpenseController extends Controller
 {
@@ -194,5 +195,25 @@ class ExpenseController extends Controller
             'cheque_no.required' => 'Please enter cheque no.'
         ];
         return \Validator::make($data, $rules, $messages);
+    }
+
+    /**
+     * This function is used to view invoice of expense
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Int $expenseId
+     * @return \Illuminate\Http\Response
+     */
+    public function viewInvoice(Request $request, int $expenseId)
+    {
+        $societyDetail = SocietyModel::where([
+            'societies.id' => \Session::get('user.society_id')
+        ])->first();
+        $expenseDetail = ExpenseModel::findOrfail($expenseId);
+
+        return view('expenses.invoice', [
+            'societyDetail' => $societyDetail,
+            'expenseDetail' => $expenseDetail
+        ]);
     }
 }
