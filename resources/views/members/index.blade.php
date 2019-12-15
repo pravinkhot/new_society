@@ -53,7 +53,7 @@
                                                     <td>{{ $member->email }}</td>
                                                     <td>{{ $member->mobile_no }}</td>
                                                     <td>
-                                                        <a href="{{ route('members.edit', ['memberId' => $member->id]) }}" rel="tooltip" class="btn-floating cyan" data-original-title="Edit Member" title="">
+                                                        <a href="{{ route('members.edit', ['member' => $member->id]) }}" rel="tooltip" class="btn-floating cyan" data-original-title="Edit Member" title="">
                                                             <i class="material-icons">edit</i>
                                                         </a>
                                                         <button type="button" rel="tooltip" class="btn-floating waves-effect waves-light btn-danger singleDelete ladda-button" data-original-title="Delete" title="" data-style="zoom-in">

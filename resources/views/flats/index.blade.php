@@ -60,7 +60,7 @@
                                                     <td>{{ $flat->getFlatStatus->name }}</td>
                                                     @if(isset($currentEntityPermissions['edit']) && $currentEntityPermissions['edit'] == 1)
                                                         <td>
-                                                            <a href="{{ route('flats.edit', ['flatId' => $flat->id]) }}" rel="tooltip" class="btn-floating cyan" data-original-title="Edit Flat" title="">
+                                                            <a href="{{ route('flats.edit', ['flat' => $flat->id]) }}" rel="tooltip" class="btn-floating cyan" data-original-title="Edit Flat" title="">
                                                                 <i class="material-icons">edit</i>
                                                             </a>
                                                             {{-- <button type="button" rel="tooltip" class="btn-floating waves-effect waves-light btn-danger singleDelete ladda-button" data-original-title="Delete Flat" title="" data-style="zoom-in">
