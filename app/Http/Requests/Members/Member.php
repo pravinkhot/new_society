@@ -44,7 +44,6 @@ class Member extends FormRequest
             ],
             'role_id' => 'required'
         ];
-        return [];
     }
 
     /**

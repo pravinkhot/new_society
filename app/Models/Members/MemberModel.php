@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models\Members;
 
 use App\Models\BaseModel;

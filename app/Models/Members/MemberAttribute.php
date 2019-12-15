@@ -4,7 +4,8 @@ namespace App\Models\Members;
 
 use Carbon\Carbon;
 
-trait MemberAttribute {
+trait MemberAttribute
+{
 
 	/**
      * Get the user's full name.
