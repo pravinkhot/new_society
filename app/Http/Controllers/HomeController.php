@@ -3,22 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Models\Society As SocietyModel;
-use App\User As UserModel;
-
-use App\Helpers\SetupNewSociety As SetupNewSocietyHelper;
+use App\Models\MemberSociety\MemberSocietyModel;
 
 class HomeController extends Controller
 {
+    private $memberSocietyModel;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(MemberSocietyModel $memberSocietyModel)
     {
         $this->middleware('auth');
+        $this->memberSocietyModel = $memberSocietyModel;
     }
 
     /**
@@ -31,25 +30,20 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function societyList()
+    public function societyList(Request $request)
     {
-        $societyList = UserModel::leftjoin('user_society', 'user_society.user_id', '=', 'users.id')
-                ->leftjoin('societies', 'societies.id', '=', 'user_society.society_id')
-                ->leftjoin('roles', 'roles.id', '=', 'user_society.role_id')
-                ->select([
-                    'roles.name as role_name',
-                    'user_society.society_id',
-                    'user_society.role_id',
-                    'societies.name as society_name',
-                ])
-                ->where([
-                    'user_society.user_id' => \Auth::id()
-                ])
-                ->get();
-
-        return view('society_list', [
-            'societyList' => $societyList
-        ]);
+        $societyList = $this->memberSocietyModel->getMemberAssociatedSocieties($request);
+        if ($societyList->count() > 1) {
+            return view('society_list', [
+                'societyList' => $this->memberSocietyModel->getMemberAssociatedSocieties($request)
+            ]);
+        } else {
+            $request->merge([
+                'societyId' => $societyList[0]->society_id ?? null,
+                'roleId' => $societyList[0]->role_id ?? null,
+            ]);
+            return $this->setSociety($request);
+        }
     }
 
     public function setSociety(Request $request)
@@ -59,11 +53,5 @@ class HomeController extends Controller
             'role_id' => $request->input('roleId')
         ]);
         return redirect('home');
-    }
-
-    public function setupNewSociety()
-    {
-        $setupNewSociety = new SetupNewSocietyHelper();
-        $setupNewSociety->setupNewSociety();
     }
 }

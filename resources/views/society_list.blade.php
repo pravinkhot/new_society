@@ -35,8 +35,8 @@
                                         @if(!empty($societyList))
                                             @foreach($societyList as $society)
                                                 <tr>
-                                                    <td><a href="{{ route('setSociety', ['societyId' => $society->society_id, 'roleId' => $society->role_id]) }}">{{ $society->society_name }}</a></td>
-                                                    <td>{{ $society->role_name }}</td>
+                                                    <td><a href="{{ route('setSociety', ['societyId' => $society->society_id, 'roleId' => $society->role_id]) }}">{{ $society->getSocietyDetails->name }}</a></td>
+                                                    <td>{{ $society->getRoleDetails->name }}</td>
                                                     <td>10</td>
                                                     <td>10</td>
                                                     <td>OFF</td>
