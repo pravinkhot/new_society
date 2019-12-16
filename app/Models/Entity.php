@@ -19,4 +19,13 @@ class Entity extends Model
                 'society_id' => \Session::get('user.society_id')
             ]);
     }
+
+    public function getEntityByName(string $entityName)
+    {
+        return self::where([
+            'name' => $entityName,
+            'status' => 1
+        ])
+        ->first();
+    }
 }

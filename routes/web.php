@@ -43,6 +43,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 Route::resource('expenses', 'ExpenseController');
                 Route::get('expenses/viewInvoice/{expenseId}', 'ExpenseController@viewInvoice')->name('expenses.viewInvoice');
             });
+
+            //Notice
+            Route::resource('notices', 'NoticeController');
         });
     });
 });

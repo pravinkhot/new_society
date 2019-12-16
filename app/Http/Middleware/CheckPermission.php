@@ -3,10 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
 use Illuminate\Support\Str;
-
-use App\Models\Role as RoleModel;
+use Illuminate\Http\Request;
+use App\Models\Roles\RoleModel;
 use App\Models\Entity as EntityModel;
 
 class CheckPermission
@@ -21,7 +20,7 @@ class CheckPermission
     public function handle($request, Closure $next, $checkPaermissionFlag)
     {
         $entityName = Str::singular($request->segment(1));
-        $permissionDetails = $this->getPermissionForEntity($entityName);
+        $permissionDetails = $this->getPermissionForEntity($request, $entityName);
 
         if ($checkPaermissionFlag) {
             $currentActionName = $request->route()->getActionMethod();
@@ -36,24 +35,19 @@ class CheckPermission
 
 
     /**
+     * @param  \Illuminate\Http\Request  $request
      * @param  string $entityName
      * @return Array
      */
-    private function getPermissionForEntity(string $entityName): array
+    private function getPermissionForEntity(Request $request, string $entityName): array
     {
         $permissionDetails = [];
-        $entityDetail = EntityModel::where([
-            'name' => $entityName,
-            'status' => 1
-        ])
-        ->first();
+        $roleModel = new RoleModel();
+        $entityModel = new EntityModel();
+        $entityDetail = $entityModel->getEntityByName($entityName);
 
-        $roleDetail = RoleModel::where([
-            'id' => \Session::get('user.role_id')
-        ])
-        ->first();
-
-        foreach ($roleDetail->rolePermissions ?? [] as $key => $permission) {
+        $roleDetail = $roleModel->getRoleDetail($request->session()->get('user.role_id'));
+        foreach ($roleDetail->getRolePermissions ?? [] as $key => $permission) {
             $tempPermission = [
                 'add' => $permission->add,
                 'edit' => $permission->edit,
