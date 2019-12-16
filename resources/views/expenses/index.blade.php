@@ -60,7 +60,7 @@
                                                     <td>{{ $expense->getCreatedByUser->full_name }}</td>
                                                     @if(isset($currentEntityPermissions['edit']) && $currentEntityPermissions['edit'] == 1)
                                                         <td>
-                                                            <a href="{{ route('expenses.edit', ['expenseId' => $expense->id]) }}" rel="tooltip" class="btn-floating cyan" data-original-title="Edit Expense" title="">
+                                                            <a href="{{ route('expenses.edit', ['expense' => $expense->id]) }}" rel="tooltip" class="btn-floating cyan" data-original-title="Edit Expense" title="">
                                                                 <i class="material-icons">edit</i>
                                                             </a>
                                                         </td>

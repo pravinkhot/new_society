@@ -1,20 +1,11 @@
 <?php
 
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Model;
+namespace App\Models\Expenses;
 
 use Carbon\Carbon;
 
-class Expense extends Model
+trait ExpenseAttribute
 {
-    public function newQuery($excludeDeleted = true) {
-        return parent::newQuery($excludeDeleted)
-            ->where([
-                'society_id' => \Session::get('user.society_id')
-            ]);
-    }
-
     /**
      * Set the bill date format.
      *
@@ -38,22 +29,10 @@ class Expense extends Model
         $value = Carbon::parse($value)->toDateString();
         $this->attributes['payment_date'] = $value;
     }
-
+    
     /**
-     * Get the bill date.
+     * Get payment date in required format.
      *
-     * @param  string  $value
-     * @return string
-     */
-    public function getBillDateAttribute($value)
-    {
-        return Carbon::parse($value)->format(config('custom.defaultDateFormat'));
-    }
-
-    /**
-     * Get the payment date.
-     *
-     * @param  string  $value
      * @return string
      */
     public function getPaymentDateAttribute($value)
@@ -62,18 +41,13 @@ class Expense extends Model
     }
 
     /**
-     * Get associated category with this expense.
+     * Get the bill date in required format.
+     *
+     * @param  string  $value
+     * @return string
      */
-    public function getExpenseCategory()
+    public function getBillDateAttribute($value)
     {
-        return $this->belongsTo('App\Models\ExpenseCategory', 'expense_category_id');
-    }
-
-    /**
-     * Get associated created by with this expense.
-     */
-    public function getCreatedByUser()
-    {
-        return $this->belongsTo('App\User', 'created_by');
+        return Carbon::parse($value)->format(config('custom.defaultDateFormat'));
     }
 }

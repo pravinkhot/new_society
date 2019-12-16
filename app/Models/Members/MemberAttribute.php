@@ -36,6 +36,6 @@ trait MemberAttribute
      */
     public function getDobAttribute($value)
     {
-        return Carbon::parse($value)->format('d-m-Y');
+        return Carbon::parse($value)->format(config('custom.defaultDateFormat'));
     }
 }

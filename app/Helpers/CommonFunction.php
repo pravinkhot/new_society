@@ -2,7 +2,7 @@
 namespace App\Helpers;
 
 use App\Models\Entity as EntityModel;
-use App\Models\Role as RoleModel;
+use App\Models\Roles\RoleModel;
 use App\Models\Wing as WingModel;
 use App\Models\MemberType as MemberTypeModel;
 use App\Models\ExpenseCategory as ExpenseCategoryModel;
@@ -13,11 +13,9 @@ class CommonFunction
      * This function is used to return role list
      * @return Array
      */
-    public static function getRoleList(): array
+    public static function getRoleList(RoleModel $roleModel): array
     {
-        return RoleModel::orderBy('name', 'ASC')
-                ->pluck('name', 'id')
-                ->toArray();
+        return $roleModel->getRoleWithIdAndName();
     }
 
     /**
