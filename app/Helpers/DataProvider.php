@@ -72,6 +72,11 @@ class DataProvider
                     ];
                     break;
             }
+        } else if ($moduleName == 'services') {
+            $breadcrumbList[] = [
+                'label' => 'Services',
+                'url' => route('services.index')
+            ];
         }
         return $breadcrumbList;
     }

@@ -13,8 +13,9 @@ class CommonFunction
      * This function is used to return role list
      * @return Array
      */
-    public static function getRoleList(RoleModel $roleModel): array
+    public static function getRoleList(): array
     {
+        $roleModel = new RoleModel();
         return $roleModel->getRoleWithIdAndName();
     }
 

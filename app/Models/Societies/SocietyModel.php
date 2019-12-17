@@ -6,7 +6,7 @@ use App\Models\BaseModel;
 
 class SocietyModel extends BaseModel
 {
-	use Society;
-	
+    use Society;
+    
     protected $table = 'societies';
 }

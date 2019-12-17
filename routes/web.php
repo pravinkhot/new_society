@@ -46,6 +46,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
             //Notice
             Route::resource('notices', 'NoticeController');
+
+            //Service
+            Route::resource('services', 'ServiceController');
         });
     });
 });
