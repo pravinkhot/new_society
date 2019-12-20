@@ -77,6 +77,11 @@ class DataProvider
                 'label' => 'Services',
                 'url' => route('services.index')
             ];
+        }  else if ($moduleName == 'incomes') {
+            $breadcrumbList[] = [
+                'label' => 'Incomes',
+                'url' => route('incomes.index')
+            ];
         }
         return $breadcrumbList;
     }

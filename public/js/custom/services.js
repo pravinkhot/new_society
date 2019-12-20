@@ -16,11 +16,8 @@ $(document).ready(function () {
 
     function initializeModal(response, modalContainerId) {
         $('#'+modalContainerId).html(response);
-        $('#'+modalContainerId+' .modal').modal( {
-            dismissible: true,
-        });
-        var Modalelem = document.querySelector('#'+modalContainerId+' .modal');
-        var instance = M.Modal.init(Modalelem, {
+        var modalElement = document.querySelector('#'+modalContainerId+' .modal');
+        var instance = M.Modal.init(modalElement, {
             dismissible: false,
         });
         instance.open();

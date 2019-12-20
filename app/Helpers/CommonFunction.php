@@ -79,6 +79,17 @@ class CommonFunction
     }
 
     /**
+     * This function is used to return income category list
+     *
+     * @return array
+     */
+    public static function getIncomeCategoryWithNameAndId()
+    {
+        $incomeCategoryModel = new \App\Models\Incomes\Category\CategoryModel();
+        return $incomeCategoryModel->getIncomeCategoryWithNameAndId();
+    }
+
+    /**
      * This function is used to generate radom password
      * @param  int|integer $length 
      * @return string              

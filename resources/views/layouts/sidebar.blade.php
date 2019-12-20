@@ -105,6 +105,24 @@
                     </div>
                 </li>
             @endif
+
+            @if(array_key_exists('income', $entityList) && !empty($allEntityPermissions[$entityList['income']]['view']))
+                <li class="bold">
+                    <a class="waves-effect waves-cyan" href="{{ route('incomes.index') }}">
+                        <i class="nav-icon fa fa-money" aria-hidden="true"></i>
+                        <span class="menu-title">Incomes</span>
+                    </a>
+                </li>
+            @endif
+
+            @if(array_key_exists('service', $entityList) && !empty($allEntityPermissions[$entityList['service']]['view']))
+                <li class="bold">
+                    <a class="waves-effect waves-cyan" href="{{ route('services.index') }}">
+                        <i class="material-icons">settings_input_svideo</i>
+                        <span class="menu-title">Services</span>
+                    </a>
+                </li>
+            @endif
         @endif
      </ul>
 </aside>

@@ -38,11 +38,16 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             //Flat
             Route::resource('flats', 'FlatController');
 
+            Route::namespace('Incomes')->group(function () {
+                Route::resource('incomes', 'IncomeController');
+            });
+
             Route::namespace('Expense')->group(function () {
                 //Expense
                 Route::resource('expenses', 'ExpenseController');
                 Route::get('expenses/viewInvoice/{expenseId}', 'ExpenseController@viewInvoice')->name('expenses.viewInvoice');
             });
+
 
             //Notice
             Route::resource('notices', 'NoticeController');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateServicesTable extends Migration
+class CreateIncomeCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,12 @@ class CreateServicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('income_category', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('society_id')->index();
             $table->foreign('society_id')->references('id')->on('societies');
-            $table->string('name', 50);
-            $table->string('provider_name', 50)->nullable();
-            $table->char('mobile_no', 20);
-            $table->char('alternate_mobile_no', 20)->nullable();
-            $table->string('email', 128)->nullable();
-            $table->string('category', 50)->nullable();
-            $table->text('address')->nullable();
+            $table->string('name', 50)->collation('utf8mb4_general_ci');
+            $table->boolean('status');
             $table->unsignedBigInteger('created_by')->nullable()->index();
             $table->foreign('created_by')->references('id')->on('users');
             $table->unsignedBigInteger('updated_by')->nullable()->index();
@@ -40,6 +35,6 @@ class CreateServicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('income_category');
     }
 }

@@ -17,6 +17,7 @@ $(document).ready(function () {
                             case 'notice':
                             case 'event':
                             case 'role':
+                            case 'income':
                             case 'complaint':
                                 redirectURL = data.moduleName+'s';
                             break;
@@ -30,6 +31,7 @@ $(document).ready(function () {
                             case 'event':
                             case 'role':
                             case 'setting':
+                            case 'income':
                             case 'complaint':
                                 redirectURL = data.moduleName+'s';
                             break;
