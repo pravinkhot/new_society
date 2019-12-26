@@ -1,6 +1,7 @@
 <?php
 namespace App\Helpers;
 
+use Illuminate\Http\UploadedFile;
 use App\Models\Entity as EntityModel;
 use App\Models\Roles\RoleModel;
 use App\Models\Wing as WingModel;
@@ -104,5 +105,17 @@ class CommonFunction
             $passwordAlphabets[] = $allowedAlphabets[$n];
         }
         return implode($passwordAlphabets);
+    }
+
+    public static function storeFile(UploadedFile $fileData, array $otherData): string
+    {
+        $entityName = $otherData['entityName'] ?? null;
+        $fileNameId = $otherData['fileNameId'] ?? null;
+        $storageFilePath = '/'.\Session::get('user.society_id').'/'.$entityName;
+        $fileData->storeAs(
+            $storageFilePath,
+            $fileNameId.'.'.$fileData->extension()
+        );
+        return $fileNameId.'.'.$fileData->extension();
     }
 }

@@ -118,8 +118,17 @@
             @if(array_key_exists('service', $entityList) && !empty($allEntityPermissions[$entityList['service']]['view']))
                 <li class="bold">
                     <a class="waves-effect waves-cyan" href="{{ route('services.index') }}">
-                        <i class="material-icons">settings_input_svideo</i>
+                        <i class="icon icon-service"></i>
                         <span class="menu-title">Services</span>
+                    </a>
+                </li>
+            @endif
+
+            @if(array_key_exists('notice', $entityList) && !empty($allEntityPermissions[$entityList['notice']]['view']))
+                <li class="bold">
+                    <a class="waves-effect waves-cyan" href="{{ route('notices.index') }}">
+                        <i class="icon icon-notice"></i>
+                        <span class="menu-title">Notices</span>
                     </a>
                 </li>
             @endif

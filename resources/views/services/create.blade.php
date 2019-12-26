@@ -32,7 +32,7 @@
 
                 <div class="input-field col l4 m4 s12">
                     <input type="text" id="category" name="category">
-                    <label for="category">Category <small>(Ex: Plumber, Office Supplies, Electrician)</small></label>
+                    <label for="category">Category <small>(Ex: Plumber, Electrician etc.)</small></label>
                 </div>
 
                 <div class="input-field col l6 m6 s12">

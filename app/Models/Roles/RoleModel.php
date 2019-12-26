@@ -10,7 +10,8 @@ class RoleModel extends BaseModel
     
     protected $table = 'roles';
 
-    public function newQuery($excludeDeleted = true) {
+    public function newQuery($excludeDeleted = true)
+    {
         return parent::newQuery($excludeDeleted)
             ->where([
                 'society_id' => \Session::get('user.society_id')

@@ -21,7 +21,6 @@ class NoticeController extends Controller
      */
     public function index(Request $request)
     {
-        dd($this->noticeModel->getNoticeListWithPaginate($request));
         return view('notices.index', [
             'noticeList' => $this->noticeModel->getNoticeListWithPaginate($request)
         ]);
@@ -45,7 +44,11 @@ class NoticeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json([
+            'success' => true,
+            'message' => 'Notice added successfully.',
+            'data' => $this->noticeModel->saveNotice($request, $id = 0)
+        ], 200);
     }
 
     /**
@@ -67,7 +70,9 @@ class NoticeController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('notices.edit', [
+            'noticeDetail' => $this->noticeModel->getNoticeDetail($id)
+        ]);
     }
 
     /**
@@ -79,7 +84,11 @@ class NoticeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return response()->json([
+            'success' => true,
+            'message' => 'Notice updated successfully.',
+            'data' => $this->noticeModel->saveNotice($request, $id)
+        ], 200);
     }
 
     /**
