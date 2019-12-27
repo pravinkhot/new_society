@@ -39,6 +39,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::resource('flats', 'FlatController');
 
             Route::namespace('Incomes')->group(function () {
+                Route::resource('incomes/category', 'IncomeCategoryController', [
+                    'as' => 'incomes'
+                ]);
+
                 Route::resource('incomes', 'IncomeController');
             });
 

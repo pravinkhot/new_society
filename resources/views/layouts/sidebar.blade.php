@@ -108,10 +108,26 @@
 
             @if(array_key_exists('income', $entityList) && !empty($allEntityPermissions[$entityList['income']]['view']))
                 <li class="bold">
-                    <a class="waves-effect waves-cyan" href="{{ route('incomes.index') }}">
+                    <a class="collapsible-header waves-effect waves-cyan ">
                         <i class="nav-icon fa fa-money" aria-hidden="true"></i>
                         <span class="menu-title">Incomes</span>
                     </a>
+                    <div class="collapsible-body">
+                        <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                            <li>
+                                <a class="collapsible-body" href="{{ route('incomes.index') }}">
+                                    <i class="material-icons">radio_button_unchecked</i>
+                                    <span>Incomes</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="collapsible-body" href="{{ route('incomes.category.index') }}">
+                                    <i class="material-icons">radio_button_unchecked</i>
+                                    <span>Income Category</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
             @endif
 

@@ -21,6 +21,10 @@ $(document).ready(function () {
                             case 'complaint':
                                 redirectURL = data.moduleName+'s';
                             break;
+
+                            case 'incomeCategory':
+                                window.location.reload(true);
+                            break;
                         }
                     break;
 
@@ -34,6 +38,10 @@ $(document).ready(function () {
                             case 'income':
                             case 'complaint':
                                 redirectURL = data.moduleName+'s';
+                            break;
+
+                            case 'incomeCategory':
+                                window.location.reload(true);
                             break;
                         }
                     break;

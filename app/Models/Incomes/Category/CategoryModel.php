@@ -6,7 +6,7 @@ use App\Models\BaseModel;
 
 class CategoryModel extends BaseModel
 {
-    use Category;
+    use Category, CategoryAttribute;
 
     protected $table = 'income_category';
     

@@ -10,7 +10,7 @@ $(document).ready(function () {
         var incomeId = $(this).data("id");
         ajaxModalRequestObject.ajaxRequest('incomes/'+incomeId+'/edit', editIncomeSuccess);
         function editIncomeSuccess(response) {
-            initializeModal(response, 'editIncomeModalContainer');
+            initializeModal(response);
         }
     });
 
