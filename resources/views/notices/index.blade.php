@@ -59,7 +59,7 @@
                                                     <td>{{ $notice->description }}</td>
                                                     @if(isset($currentEntityPermissions['edit']) && $currentEntityPermissions['edit'] == 1)
                                                         <td>
-                                                            <button type="button" rel="tooltip" class="btn-floating cyan editNoticeButton" data-id="{{ $notice->id }}" data-original-title="Edit Notice">
+                                                            <button type="button" rel="tooltip" class="btn-floating cyan editNoticeButton ladda-button" data-id="{{ $notice->id }}" data-url="{{ $notice->id }}" data-original-title="Edit Notice" data-style="zoom-in">
                                                                 <i class="material-icons">edit</i>
                                                             </button>
                                                         </td>

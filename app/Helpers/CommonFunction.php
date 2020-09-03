@@ -118,4 +118,31 @@ class CommonFunction
         );
         return $fileNameId.'.'.$fileData->extension();
     }
+
+    /**
+     * Get charge period list
+     * @return array
+     */
+    public static function getChargePeriodList(): array
+    {
+        return [
+            1 => 'One Time',
+            2 => 'Monthly',
+            3 => 'Quarterly',
+            4 => 'Yearly'
+        ];
+    }
+
+    /**
+     * Get invoice option list
+     * @return array
+     */
+    public static function getInvoiceOptionList(): array
+    {
+        return [
+            1 => 'All Member',
+            2 => 'Building Member',
+            3 => 'One Member'
+        ];
+    }
 }

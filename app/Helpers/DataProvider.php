@@ -66,9 +66,28 @@ class DataProvider
                         'label' => 'Edit Expense',
                     ];
                     break;
+
                 case 'viewInvoice':
                     $breadcrumbList[] = [
                         'label' => 'View Invoice',
+                    ];
+                    break;
+            }
+        } else if ($moduleName == 'charges') {
+            $breadcrumbList[] = [
+                'label' => 'Charges',
+                'url' => route('charges.index')
+            ];
+            switch ($actionName) {
+                case 'create':
+                    $breadcrumbList[] = [
+                        'label' => 'Create Charge',
+                    ];
+                    break;
+
+                case 'edit':
+                    $breadcrumbList[] = [
+                        'label' => 'Edit Charge',
                     ];
                     break;
             }
@@ -76,6 +95,11 @@ class DataProvider
             $breadcrumbList[] = [
                 'label' => 'Services',
                 'url' => route('services.index')
+            ];
+        } else if ($moduleName == 'notices') {
+            $breadcrumbList[] = [
+                'label' => 'Notices',
+                'url' => route('notices.index')
             ];
         }  else if ($moduleName == 'incomes') {
             $breadcrumbList[] = [

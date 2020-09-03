@@ -4243,7 +4243,7 @@ li.home:before
 }
 
 /*----------------------------------------
-  Grid 
+  Grid
 ------------------------------------------*/
 .section
 {
@@ -9334,6 +9334,11 @@ nav.display-none.search-sm .nav-wrapper form .input-field input.search-box-sm:no
             transform: translateY(0%);
 
     color: #ff4081;
+}
+
+.error {
+    color: #ff4081;
+    font-size: .8rem;
 }
 
 .input-field label.active

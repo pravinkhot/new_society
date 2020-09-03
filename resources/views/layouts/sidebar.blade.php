@@ -79,6 +79,33 @@
                 </li>
             @endif
 
+            @if(array_key_exists('charge', $entityList) && !empty($allEntityPermissions[$entityList['charge']]['view']))
+                <li class="bold">
+                    <a class="collapsible-header waves-effect waves-cyan ">
+                        <i class="nav-icon fa fa-money" aria-hidden="true"></i>
+                        <span class="menu-title">Charges</span>
+                    </a>
+                    <div class="collapsible-body">
+                        <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                            <li>
+                                <a class="collapsible-body" href="{{ route('charges.index') }}">
+                                    <i class="material-icons">radio_button_unchecked</i>
+                                    <span>Charges</span>
+                                </a>
+                            </li>
+                            @if($allEntityPermissions[$entityList['charge']]['add'])
+                                <li>
+                                    <a class="collapsible-body" href="{{ route('charges.create') }}">
+                                        <i class="material-icons">radio_button_unchecked</i>
+                                        <span>Create Charge</span>
+                                    </a>
+                                </li>
+                            @endif
+                        </ul>
+                    </div>
+                </li>
+            @endif
+
             @if(array_key_exists('expense', $entityList) && !empty($allEntityPermissions[$entityList['expense']]['view']))
                 <li class="bold">
                     <a class="collapsible-header waves-effect waves-cyan ">

@@ -15,20 +15,19 @@ class CreateSocietiesTable extends Migration
     {
         Schema::create('societies', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('country_id')->index();
             $table->string('name', 255)->collation('utf8mb4_general_ci');
             $table->string('desired_subdomain', 50)->collation('utf8mb4_general_ci');
             $table->text('address1');
             $table->text('address2')->nullable(true);
             $table->string('city', 255)->nullable(true);
             $table->string('state', 255);
-            $table->integer('country_id');
             $table->char('pincode', 6);
             $table->string('registration_number', 255)->nullable(true);
             $table->timestamp('subscrition_expiry_date');
             $table->timestamps();
             $table->softDeletes();
-            $table->index('country_id');
-            $table->foreign('country_id')->references('id')->on('count');
+            $table->foreign('country_id')->references('id')->on('countries');
         });
     }
 

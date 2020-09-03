@@ -15,9 +15,9 @@ class CheckBasicConfiguration
      */
     public function handle($request, Closure $next)
     {
-        if (empty(\Session::get('user.society_id'))) {
-            return redirect('societyList');
-        }
+        // if (empty(\Session::get('user.society_id'))) {
+        //     return redirect('societyList');
+        // }
         return $next($request);
     }
 }

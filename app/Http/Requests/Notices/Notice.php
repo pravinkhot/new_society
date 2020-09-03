@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Members;
+namespace App\Http\Requests\Notices;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class Member extends FormRequest
+class Notice extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,22 +25,17 @@ class Member extends FormRequest
      */
     public function rules(Request $request)
     {
-        $memberID = $request->route('member');
+        $noticeID = $request->route('notice');
+
         return [
-            'first_name' => ['required','max:50'],
-            'middle_name' => ['max:50'],
-            'last_name' => ['required','max:50'],
-            'gender' => 'required',
-            'dob' => 'required',
-            'email' => [
+            'title' => [
                 'required',
-                'email',
-                Rule::unique('users')->ignore($memberID)
+                'max:50',
+                Rule::unique('notices')->ignore($noticeID)
             ],
-            'mobile_no' => [
-                'required'
-            ],
-            'role_id' => 'required'
+            'type' => 'required',
+            'end_date' => 'required',
+            'document' => 'required|mimes:jpg,jpeg,png,pdf',
         ];
     }
 
@@ -51,8 +46,6 @@ class Member extends FormRequest
      */
     public function messages()
     {
-        return [
-            'mobile_no.integer' => 'The mobile no must be a number.'
-        ];
+        return [];
     }
 }

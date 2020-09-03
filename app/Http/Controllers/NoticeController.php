@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Notices\NoticeModel;
+use App\Http\Requests\Notices\Notice as NoticeRequest;
 
 class NoticeController extends Controller
 {
@@ -39,10 +40,10 @@ class NoticeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param NoticeRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(NoticeRequest $request)
     {
         return response()->json([
             'success' => true,
@@ -78,11 +79,11 @@ class NoticeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param NoticeRequest $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(NoticeRequest $request, $id)
     {
         return response()->json([
             'success' => true,

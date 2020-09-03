@@ -26,6 +26,7 @@ trait Service
     {
         $serviceObj = self::find($serviceID) ?? new self();
         $serviceObj->updated_by = \Auth::id();
+        $serviceObj->society_id = $request->session()->get('user.society_id');
         if (empty($serviceObj->id)) {
             $serviceObj->created_by = \Auth::id();
         }

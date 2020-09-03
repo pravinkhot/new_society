@@ -1,9 +1,9 @@
 <input type="hidden" name="serviceId" id="serviceId" class="serviceId" value="{{ $serviceDetail->id }}">
-<form id="edit_service_form" class="col s12 edit_service_form" method="POST" action="#">
+<form id="edit_service_form" class="col s12 edit_service_form" method="POST" action="#" data-action="update" data-module="service" data-url="services/{{ $serviceDetail->id }}">
     @method('PUT')
     <div id="editServiceModal" class="modal">
         <div class="modal-content">
-            <h4 class="center-align mb-2">Edit Service</h4>
+            <h5 class="center-align mb-2">Edit Service</h5>
             <div class="row">
                 <div class="input-field col l4 m4 s12">
                     <input type="text" id="name" name="name" value="{{ $serviceDetail->name }}">

@@ -1,67 +1,43 @@
-$(document).ready(function () {
-    $('#createNoticeButton').click(function () {
-        ajaxModalRequestObject.ajaxRequest('notices/create', createNoticeSuccess);
-        function createNoticeSuccess(response) {
-            initializeModal(response, 'createEditNoticeModalContainer');
-        }
-    });
+const Notice = function () {
+    this.bind = () => {
+        $(document)
+            .on('submit', '#createEditNoticeModalContainer #create_notice_form, #createEditNoticeModalContainer #edit_notice_form', (event) => {
+                event.preventDefault();
 
-    $('.editNoticeButton').click(function () {
-        var noticeId = $(this).data("id");
-        ajaxModalRequestObject.ajaxRequest('notices/'+noticeId+'/edit', editNoticeSuccess);
-        function editNoticeSuccess(response) {
-            initializeModal(response, 'createEditNoticeModalContainer');
-        }
-    });
+                crudObj.createUpdateResource({
+                    'event': event,
+                });
+            })
+            .on('click', '#createNoticeButton', (event) => {
+                event.preventDefault();
 
-    function initializeModal(response, modalContainerId) {
-        $('#'+modalContainerId).html(response);
-        var modalElement = document.querySelector('#'+modalContainerId+' .modal');
-        var instance = M.Modal.init(modalElement, {
-            dismissible: false,
-        });
-        instance.open();
-        M.updateTextFields();
+                ajaxModalRequestObject.ajaxRequest({
+                    'url': 'notices/create',
+                    'laddaButtonElement': event.currentTarget,
+                    'successCallback': (response) => {
+                        ajaxModalRequestObject.initializeModal(response, 'createEditNoticeModalContainer');
+                    }
+                });
+            })
+            .on('click', '.editNoticeButton', (event) => {
+                event.preventDefault();
 
-        $('.datepicker').datepicker({
-            format: 'dd-mm-yyyy'
-        });
-    }
+                let noticeId = $(event.currentTarget).data('id');
 
-    $('#createEditNoticeModalContainer').on("submit", "#create_notice_form" , function(e) {
-        e.preventDefault();
-        formData = new FormData($("#create_notice_form")[0]);
-        ajaxRequestObject.ajaxRequest(
-            'notices',
-            'POST',
-            formData,
-            ajaxConfigData = {
-                'cache':false,
-                'contentType': false,
-                'processData': false,
-                'moduleName': 'notice',
-                'actionFormID': '#create_notice_form',
-                'action': 'create'
-            }
-        );
-    });
+                ajaxModalRequestObject.ajaxRequest({
+                    'url': 'notices/'+noticeId+'/edit',
+                    'laddaButtonElement': event.currentTarget,
+                    'successCallback': (response) => {
+                        ajaxModalRequestObject.initializeModal(response, 'createEditNoticeModalContainer');
+                    }
+                });
+            });
+    };
 
-    $('#createEditNoticeModalContainer').on("submit", "#edit_notice_form" , function(e) {
-        e.preventDefault();
-        var noticeId = $('#noticeId').val();
-        var formData = new FormData($("#edit_notice_form")[0]);
-        ajaxRequestObject.ajaxRequest(
-            'notices/'+noticeId,
-            'POST',
-            formData,
-            ajaxConfigData = {
-                'cache':false,
-                'contentType': false,
-                'processData': false,
-                'moduleName': 'notice',
-                'actionFormID': '#edit_notice_form',
-                'action': 'edit'
-            }
-        );
-    });
-});
+    this.init = () => {
+        this.bind();
+    };
+};
+
+window.noticeObj = new Notice();
+window.noticeObj.init();

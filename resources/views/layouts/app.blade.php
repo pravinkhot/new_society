@@ -17,7 +17,7 @@
 
     <!-- Fonts and icons -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    
+
     <!-- CSS Files -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/materialize.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
@@ -78,10 +78,11 @@
         <!-- Ladda -->
         <script src="{{ asset('vendor/ladda/js/spin.min.js') }}"></script>
         <script src="{{ asset('vendor/ladda/js/ladda.min.js') }}"></script>
-    
+
     <!-- App Js -->
     <script src="{{ asset('js/custom/common/common.js') }}"></script>
     <script src="{{ asset('js/custom/common/ajax.js') }}"></script>
+    <script src="{{ asset('js/custom/common/crud.js') }}"></script>
     <script src="{{ asset('js/custom/common/delete.js') }}"></script>
 
     <script type="text/javascript">
@@ -92,7 +93,7 @@
         });
     </script>
     @yield('customJs')
-    
+
     <!-- Theme Customizer -->
         <div id="theme-cutomizer-out" class="theme-cutomizer sidenav row"></div>
     <!--/ Theme Customizer -->

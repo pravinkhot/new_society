@@ -36,11 +36,11 @@
                                 <div class="col l4 m4 s12 display-inline mt-2">
                                     <label>Gender</label>
                                     <label>
-                                        <input type="radio" value="male" name="gender" checked="">
+                                        <input type="radio" value="male" name="gender" {{ ('male' === $memberDetail->gender) ? "checked" : "" }} checked="">
                                         <span>Male</span>
                                     </label>
                                     <label>
-                                        <input type="radio" value="female" name="gender">
+                                        <input type="radio" value="female" name="gender" {{ ('female' === $memberDetail->gender) ? "checked" : "" }}/>
                                         <span>Female</span>
                                     </label>
                                 </div>

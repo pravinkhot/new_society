@@ -58,6 +58,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
             //Service
             Route::resource('services', 'ServiceController');
+
+            //Charge
+            Route::resource('charges', 'ChargeController');
         });
     });
 });

@@ -57,7 +57,7 @@
                                                     <td>{{ $service->category }}</td>
                                                     @if(isset($currentEntityPermissions['edit']) && $currentEntityPermissions['edit'] == 1)
                                                         <td>
-                                                            <button type="button" rel="tooltip" class="btn-floating cyan editServiceButton" data-id="{{ $service->id }}" data-original-title="Edit Service">
+                                                            <button type="button" rel="tooltip" class="btn-floating cyan editServiceButton  ladda-button" data-id="{{ $service->id }}" data-original-title="Edit Service" data-style="zoom-in">
                                                                 <i class="material-icons">edit</i>
                                                             </button>
                                                         </td>
@@ -79,8 +79,7 @@
         </div>
     </div>
 
-    <div id="createServiceModalContainer"></div>
-    <div id="editServiceModalContainer"></div>
+    <div id="createEditServiceModalContainer"></div>
 @endsection
 
 @section('customJs')
