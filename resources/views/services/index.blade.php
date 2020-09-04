@@ -19,7 +19,7 @@
                                 @if(isset($currentEntityPermissions['add']) && $currentEntityPermissions['add'] == 1)
                                     <ul class="tabs">
                                         <li class="tab col s6 p-0">
-                                            <a id="createServiceButton" href="#" class="p-0" title="Create Service">
+                                            <a id="createServiceButton" href="#" class="p-0 createResourceBtn ladda-button" title="Create Service"  data-module="service" data-url="services/create" data-style="zoom-in">
                                                 Create
                                             </a>
                                         </li>
@@ -57,7 +57,7 @@
                                                     <td>{{ $service->category }}</td>
                                                     @if(isset($currentEntityPermissions['edit']) && $currentEntityPermissions['edit'] == 1)
                                                         <td>
-                                                            <button type="button" rel="tooltip" class="btn-floating cyan editServiceButton  ladda-button" data-id="{{ $service->id }}" data-original-title="Edit Service" data-style="zoom-in">
+                                                            <button type="button" rel="tooltip" class="btn-floating cyan editServiceButton editResourceBtn ladda-button" data-original-title="Edit Service" data-module="service" data-id="{{ $service->id }}" data-url="services/{{ $service->id }}/edit" data-style="zoom-in">
                                                                 <i class="material-icons">edit</i>
                                                             </button>
                                                         </td>
@@ -83,7 +83,6 @@
 @endsection
 
 @section('customJs')
-    <script src="{{ asset('js/custom/common/ajaxModal.js') }}"></script>
     <script src="{{ asset('js/custom/services.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {

@@ -17,7 +17,31 @@ const Crud = function () {
             }
         );
     };
+
+    this.bind = () => {
+        $(document)
+            .on('click', '.createResourceBtn, .editResourceBtn', event => {
+                event.preventDefault();
+
+                let modalContainerId = 'createEdit'+
+                    $(event.currentTarget).data('module').charAt(0).toUpperCase() +
+                    $(event.currentTarget).data('module').substr(1).toLowerCase() +
+                    'ModalContainer';
+
+                ajaxModalRequestObject.ajaxRequest({
+                    'url': $(event.currentTarget).data('url'),
+                    'laddaButtonElement': event.currentTarget,
+                    'successCallback': (response) => {
+                        ajaxModalRequestObject.initializeModal(response, modalContainerId);
+                    }
+                });
+            });
+    };
+
+    this.init = () => {
+        this.bind();
+    };
 };
 
 window.crudObj = new Crud();
-
+crudObj.init();

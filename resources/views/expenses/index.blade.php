@@ -20,7 +20,7 @@
                                 @if(isset($currentEntityPermissions['add']) && $currentEntityPermissions['add'] == 1)
                                     <ul class="tabs">
                                         <li class="tab col s6 p-0">
-                                            <a class="p-0" href="{{ route('expenses.create') }}" target="_self">
+                                            <a id="createExpenseButton" class="p-0 createResourceBtn ladda-button" href="#" data-module="expense" data-url="expenses/create" data-style="zoom-in">
                                                 Create
                                             </a>
                                         </li>
@@ -60,9 +60,9 @@
                                                     <td>{{ $expense->getCreatedByUser->full_name }}</td>
                                                     @if(isset($currentEntityPermissions['edit']) && $currentEntityPermissions['edit'] == 1)
                                                         <td>
-                                                            <a href="{{ route('expenses.edit', ['expense' => $expense->id]) }}" rel="tooltip" class="btn-floating cyan" data-original-title="Edit Expense" title="">
+                                                            <button class="btn-floating cyan editResourceBtn editExpenseBtn ladda-button" rel="tooltip" data-original-title="Edit Expense" data-module="expense" data-id="{{ $expense->id }}" data-url="expenses/{{ $expense->id }}/edit" data-style="zoom-in">
                                                                 <i class="material-icons">edit</i>
-                                                            </a>
+                                                            </button>
                                                         </td>
                                                     @endif
                                                 </tr>
@@ -82,9 +82,13 @@
             </div>
         </div>
     </div>
+
+    <div id="createEditExpenseModalContainer"></div>
 @endsection
 
 @section('customJs')
+    <script src="{{ asset('js/custom/expenses.js') }}"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             deleteConfirmMsg = 'Are you sure you want to delete this Expense?';

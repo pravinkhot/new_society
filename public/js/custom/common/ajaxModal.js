@@ -33,6 +33,9 @@ const ajaxModalRequest = function () {
             dismissible: false,
         });
         instance.open();
+
+        $('.material-select').formSelect();
+
         M.updateTextFields();
 
         $('.datepicker').datepicker({

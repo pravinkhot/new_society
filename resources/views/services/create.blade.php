@@ -16,7 +16,7 @@
                 <div class="input-field col l4 m4 s12">
                     <input type="text" id="mobile_no" name="mobile_no">
                     <label for="mobile_no">Mobile Number *</label>
-                </div>                
+                </div>
             </div>
 
             <div class="row">
@@ -38,15 +38,15 @@
                 <div class="input-field col l6 m6 s12">
                     <textarea id="address" class="materialize-textarea" name="address" rows="3"></textarea>
                     <label for="address">Address</label>
-                </div>                
+                </div>
             </div>
 
             <div class="row">
                 <div class="input-field col s6 right-align right">
-                    <a href="#!" class="modal-close btn">Close</a>
+                    <a href="#" class="modal-close btn">Close</a>
                     <button type="submit" class="btn cyan waves-effect waves-light ladda-button" data-style="zoom-in">
                         Submit
-                        <div class="ripple-container"></div>
+                        <span class="ripple-container"></span>
                     </button>
                 </div>
             </div>

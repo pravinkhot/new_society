@@ -20,7 +20,7 @@
                                 @if(isset($currentEntityPermissions['add']) && $currentEntityPermissions['add'] == 1)
                                     <ul class="tabs">
                                         <li class="tab col s6 p-0">
-                                            <a id="createNoticeButton" href="#" class="p-0" title="Create Notice">
+                                            <a id="createNoticeButton" href="#" class="p-0 createResourceBtn ladda-button" title="Create Notice" data-module="notice" data-url="notices/create" data-style="zoom-in">
                                                 Create
                                             </a>
                                         </li>
@@ -59,7 +59,7 @@
                                                     <td>{{ $notice->description }}</td>
                                                     @if(isset($currentEntityPermissions['edit']) && $currentEntityPermissions['edit'] == 1)
                                                         <td>
-                                                            <button type="button" rel="tooltip" class="btn-floating cyan editNoticeButton ladda-button" data-id="{{ $notice->id }}" data-url="{{ $notice->id }}" data-original-title="Edit Notice" data-style="zoom-in">
+                                                            <button type="button" rel="tooltip" class="btn-floating cyan editResourceBtn editNoticeButton ladda-button" data-original-title="Edit Notice" data-module="notice" data-id="{{ $notice->id }}" data-url="notices/{{ $notice->id }}/edit" data-style="zoom-in">
                                                                 <i class="material-icons">edit</i>
                                                             </button>
                                                         </td>
@@ -85,7 +85,6 @@
 @endsection
 
 @section('customJs')
-    <script src="{{ asset('js/custom/common/ajaxModal.js') }}"></script>
     <script src="{{ asset('js/custom/notices.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {

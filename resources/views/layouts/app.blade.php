@@ -82,8 +82,9 @@
     <!-- App Js -->
     <script src="{{ asset('js/custom/common/common.js') }}"></script>
     <script src="{{ asset('js/custom/common/ajax.js') }}"></script>
-    <script src="{{ asset('js/custom/common/crud.js') }}"></script>
+    <script src="{{ asset('js/custom/common/ajaxModal.js') }}"></script>
     <script src="{{ asset('js/custom/common/delete.js') }}"></script>
+    <script src="{{ asset('js/custom/common/crud.js') }}"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {

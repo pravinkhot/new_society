@@ -7,30 +7,6 @@ const Service = function () {
                 crudObj.createUpdateResource({
                     'event': event,
                 });
-            })
-            .on('click', '#createServiceButton', (event) => {
-                event.preventDefault();
-
-                ajaxModalRequestObject.ajaxRequest({
-                    'url': 'services/create',
-                    'laddaButtonElement': event.currentTarget,
-                    'successCallback': (response) => {
-                        ajaxModalRequestObject.initializeModal(response, 'createEditServiceModalContainer');
-                    }
-                });
-            })
-            .on('click', '.editServiceButton', (event) => {
-                event.preventDefault();
-
-                let serviceId = $(event.currentTarget).data('id');
-
-                ajaxModalRequestObject.ajaxRequest({
-                    'url': 'services/'+serviceId+'/edit',
-                    'laddaButtonElement': event.currentTarget,
-                    'successCallback': (response) => {
-                        ajaxModalRequestObject.initializeModal(response, 'createEditServiceModalContainer');
-                    }
-                });
             });
     };
 

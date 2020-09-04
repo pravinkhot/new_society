@@ -1,4 +1,4 @@
-<form id="create_notice_form" data-action="create" data-module="notice" data-url="notices" class="col s12 create_notice_form" method="POST" action="#">
+<form id="create_notice_form" class="col s12 create_notice_form" data-action="create" data-module="notice" data-url="notices" method="POST" action="#">
     <div id="createNoticeModal" class="modal">
         <div class="modal-content">
             <h5 class="center-align mb-2">Create Notice</h5>

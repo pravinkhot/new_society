@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Expense;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Expenses\ExpenseModel;
+use App\Http\Requests\Expenses\Expense as ExpenseRequest;
 
 class ExpenseController extends Controller
 {
@@ -43,7 +44,7 @@ class ExpenseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ExpenseRequest $request)
     {
         return response()->json([
             'success' => true,
@@ -83,7 +84,7 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ExpenseRequest $request, $id)
     {
         return response()->json([
             'success' => true,
