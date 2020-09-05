@@ -19,6 +19,7 @@ class IncomeCategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -41,8 +42,8 @@ class IncomeCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Http\Requests\Incomes\IncomeCategory  $request
-     * @return \Illuminate\Http\Response
+     * @param IncomeCategoryRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(IncomeCategoryRequest $request)
     {
@@ -69,9 +70,9 @@ class IncomeCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  App\Http\Requests\Incomes\IncomeCategory  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param IncomeCategoryRequest $request
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(IncomeCategoryRequest $request, int $id)
     {

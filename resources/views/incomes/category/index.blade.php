@@ -19,7 +19,7 @@
                                 @if(isset($currentEntityPermissions['add']) && $currentEntityPermissions['add'] == 1)
                                     <ul class="tabs">
                                         <li class="tab col s6 p-0">
-                                        	<a id="createIncomeCategoryButton" href="#" class="p-0" title="Create Income Category">
+                                        	<a id="createIncomeCategoryButton" href="#" class="p-0 createResourceBtn ladda-button" title="Create Income Category" data-module="incomeCategory" data-url="incomes/category/create" data-style="zoom-in">
                                                 Create
                                             </a>
                                         </li>
@@ -55,7 +55,7 @@
                                                     <td>{{ $incomeCategory->status_name }}</td>
                                                     @if(isset($currentEntityPermissions['edit']) && $currentEntityPermissions['edit'] == 1)
                                                         <td>
-                                                            <button type="button" rel="tooltip" class="btn-floating cyan editIncomeCategoryButton" data-id="{{ $incomeCategory->id }}" data-original-title="Edit Income">
+                                                            <button type="button" rel="tooltip" class="btn-floating cyan editResourceBtn editIncomeCategoryButton" data-original-title="Edit Income Category" data-module="incomeCategory" data-id="{{ $incomeCategory->id }}" data-url="incomes/category/{{ $incomeCategory->id }}/edit" data-style="zoom-in">
                                                                 <i class="material-icons">edit</i>
                                                             </button>
                                                         </td>
@@ -81,7 +81,6 @@
 @endsection
 
 @section('customJs')
-	<script src="{{ asset('js/custom/common/ajaxModal.js') }}"></script>
     <script src="{{ asset('js/custom/incomeCategory.js') }}"></script>
 
     <script type="text/javascript">

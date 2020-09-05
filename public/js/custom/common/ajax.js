@@ -6,8 +6,18 @@ let ajaxRequest = function () {
      */
     this.submitFormSuccessCallback = function (data) {
         let redirectURL = '';
-        if($.inArray(data.moduleName, ['wing', 'member', 'flat', 'expense', 'service', 'notice', 'income']) !== -1) {
+        if($.inArray(data.moduleName, ['wing', 'member', 'flat']) !== -1) {
             redirectURL = data.moduleName+'s';
+        } else if (-1 !== $.inArray(data.moduleName, [
+            'service',
+            'notice',
+            'expense',
+            'income',
+            'incomeCategory'
+        ])) {
+            $(document).ajaxStop(function(){
+                window.location.reload(true);
+            });
         } else {
             switch (data.action) {
                 case 'create':
@@ -16,10 +26,6 @@ let ajaxRequest = function () {
                         case 'role':
                         case 'complaint':
                             redirectURL = data.moduleName+'s';
-                            break;
-
-                        case 'incomeCategory':
-                            window.location.reload(true);
                             break;
                     }
                     break;
@@ -31,10 +37,6 @@ let ajaxRequest = function () {
                         case 'setting':
                         case 'complaint':
                             redirectURL = data.moduleName+'s';
-                            break;
-
-                        case 'incomeCategory':
-                            window.location.reload(true);
                             break;
                     }
                     break;

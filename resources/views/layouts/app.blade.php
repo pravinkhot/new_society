@@ -55,6 +55,11 @@
         <!-- END: Page Main-->
 @endguest
 
+    <script type="text/javascript">
+        baseUrl = "{{ url('/') }}";
+        baseUrlWOParameter = baseUrl+'/'+"{{ \Request::segment(1) }}";
+    </script>
+
     <!-- Scripts -->
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
 
@@ -64,13 +69,6 @@
 
     <!-- BEGIN APP JS-->
     <script src="{{ asset('js/style.js') }}" type="text/javascript"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            baseUrl = "{{ url('/') }}";
-            baseUrlWOParameter = baseUrl+'/'+"{{ \Request::segment(1) }}";
-        });
-    </script>
 
     <!-- Plugin JS -->
         <!-- Sweet Alert -->

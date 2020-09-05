@@ -28,8 +28,8 @@ const ajaxModalRequest = function () {
 
     this.initializeModal = (response, modalContainerId) => {
         $('#'+modalContainerId).html(response);
-        var modalElement = document.querySelector('#'+modalContainerId+' .modal');
-        var instance = M.Modal.init(modalElement, {
+        let modalElement = document.querySelector('#'+modalContainerId+' .modal');
+        let instance = M.Modal.init(modalElement, {
             dismissible: false,
         });
         instance.open();

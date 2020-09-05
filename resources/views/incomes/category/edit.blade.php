@@ -1,9 +1,9 @@
 <input type="hidden" name="incomeCategoryId" id="incomeCategoryId" class="incomeCategoryId" value="{{ $incomeCategoryDetail->id }}">
-<form id="edit_income_category_form" class="col s12 edit_income_category_form" method="POST" action="#">
+<form id="edit_income_category_form" class="col s12 edit_income_category_form"  data-action="update" data-module="incomeCategory" data-url="incomes/category/{{ $incomeCategoryDetail->id }}" method="POST" action="#">
     @method('PUT')
     <div id="createEditIncomeCategoryModal" class="modal">
         <div class="modal-content">
-            <h4 class="center-align mb-2">Edit Income Category</h4>
+            <h5 class="center-align mb-2">Edit Income Category</h5>
             <div class="row">
                 <div class="input-field col l4 m4 s12">
                     <input type="text" id="name" name="name" value="{{ $incomeCategoryDetail->name }}">
@@ -25,10 +25,10 @@
 
             <div class="row">
                 <div class="input-field col s6 right-align right">
-                    <a href="#!" class="modal-close btn">Close</a>
+                    <a href="#" class="modal-close btn">Close</a>
                     <button type="submit" class="btn cyan waves-effect waves-light ladda-button" data-style="zoom-in">
                         Submit
-                        <div class="ripple-container"></div>
+                        <span class="ripple-container"></span>
                     </button>
                 </div>
             </div>

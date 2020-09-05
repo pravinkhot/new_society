@@ -25,7 +25,7 @@ const Crud = function () {
 
                 let modalContainerId = 'createEdit'+
                     $(event.currentTarget).data('module').charAt(0).toUpperCase() +
-                    $(event.currentTarget).data('module').substr(1).toLowerCase() +
+                    $(event.currentTarget).data('module').substr(1) +
                     'ModalContainer';
 
                 ajaxModalRequestObject.ajaxRequest({
