@@ -1,16 +1,21 @@
 <?php
-    $incomeCategoryList = CommonFunction::getIncomeCategoryWithNameAndId();
-    $paymentModeList = \App\Helpers\DataProvider::getPaymentModeList();
+
+use App\Helpers\CommonFunction;
+use App\Helpers\DataProvider;
+
+$incomeCategoryList = CommonFunction::getIncomeCategoryWithNameAndId();
+$paymentModeList = DataProvider::getPaymentModeList();
+
 ?>
 <input type="hidden" name="incomeId" id="incomeId" class="incomeId" value="{{ $incomeDetail->id }}">
-<form id="edit_income_form" class="col s12 edit_income_form" method="POST" action="#">
+<form id="edit_income_form" class="col s12 edit_income_form" data-action="update" data-module="income" data-url="incomes/{{ $incomeDetail->id }}" method="POST" action="#">
     @method('PUT')
     <div id="editIncomeModal" class="modal">
         <div class="modal-content">
-            <h4 class="center-align mb-2">Edit Income</h4>
+            <h5 class="center-align mb-2">Edit Income</h5>
             <div class="row">
                 <div class="input-field col l4 m4 s12">
-                    {{ Form::select('income_category_id', $incomeCategoryList, $incomeDetail->income_category_id, ['class' => '', 'id' =>'income_category_id', 'placeholder' => 'Select Income Category', 'data-size' => 2]) }}
+                    {{ Form::select('income_category_id', $incomeCategoryList, $incomeDetail->income_category_id, ['class' => 'material-select', 'id' =>'income_category_id', 'placeholder' => 'Select Income Category', 'data-size' => 2]) }}
                     <label for="income_category_id">Income Category *</label>
                 </div>
 
@@ -51,10 +56,10 @@
 
             <div class="row">
                 <div class="input-field col s6 right-align right">
-                    <a href="#!" class="modal-close btn">Close</a>
+                    <a href="#" class="modal-close btn">Close</a>
                     <button type="submit" class="btn cyan waves-effect waves-light ladda-button" data-style="zoom-in">
                         Submit
-                        <div class="ripple-container"></div>
+                        <span class="ripple-container"> </span>
                     </button>
                 </div>
             </div>

@@ -6,7 +6,7 @@ let ajaxRequest = function () {
      */
     this.submitFormSuccessCallback = function (data) {
         let redirectURL = '';
-        if($.inArray(data.moduleName, ['wing', 'member', 'flat', 'expense', 'service', 'notice']) !== -1) {
+        if($.inArray(data.moduleName, ['wing', 'member', 'flat', 'expense', 'service', 'notice', 'income']) !== -1) {
             redirectURL = data.moduleName+'s';
         } else {
             switch (data.action) {
@@ -14,7 +14,6 @@ let ajaxRequest = function () {
                     switch (data.moduleName) {
                         case 'event':
                         case 'role':
-                        case 'income':
                         case 'complaint':
                             redirectURL = data.moduleName+'s';
                             break;
@@ -30,7 +29,6 @@ let ajaxRequest = function () {
                         case 'event':
                         case 'role':
                         case 'setting':
-                        case 'income':
                         case 'complaint':
                             redirectURL = data.moduleName+'s';
                             break;

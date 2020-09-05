@@ -20,7 +20,7 @@
                                 @if(isset($currentEntityPermissions['add']) && $currentEntityPermissions['add'] == 1)
                                     <ul class="tabs">
                                         <li class="tab col s6 p-0">
-                                        	<a id="createIncomeButton" href="#" class="p-0" title="Create Income">
+                                        	<a id="createIncomeButton" href="#" class="p-0 createResourceBtn ladda-button" title="Create Income" data-module="income" data-url="incomes/create" data-style="zoom-in">
                                                 Create
                                             </a>
                                         </li>
@@ -59,7 +59,7 @@
                                                     <td>{{ $income->received_from }}</td>
                                                     @if(isset($currentEntityPermissions['edit']) && $currentEntityPermissions['edit'] == 1)
                                                         <td>
-                                                            <button type="button" rel="tooltip" class="btn-floating cyan editIncomeButton" data-id="{{ $income->id }}" data-original-title="Edit Income">
+                                                            <button type="button" rel="tooltip" class="btn-floating cyan editResourceBtn editIncomeButton" data-id="{{ $income->id }}" data-original-title="Edit Income" data-module="income" data-url="incomes/{{ $income->id }}/edit" data-style="zoom-in">
                                                                 <i class="material-icons">edit</i>
                                                             </button>
                                                         </td>
@@ -85,7 +85,6 @@
 @endsection
 
 @section('customJs')
-	<script src="{{ asset('js/custom/common/ajaxModal.js') }}"></script>
     <script src="{{ asset('js/custom/incomes.js') }}"></script>
 
     <script type="text/javascript">

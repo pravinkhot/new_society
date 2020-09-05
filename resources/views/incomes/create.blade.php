@@ -1,14 +1,19 @@
 <?php
-    $incomeCategoryList = CommonFunction::getIncomeCategoryWithNameAndId();
-    $paymentModeList = \App\Helpers\DataProvider::getPaymentModeList();
+
+use App\Helpers\DataProvider;
+use App\Helpers\CommonFunction;
+
+$incomeCategoryList = CommonFunction::getIncomeCategoryWithNameAndId();
+$paymentModeList = DataProvider::getPaymentModeList();
+
 ?>
-<form id="create_income_form" class="col s12 create_income_form" method="POST" action="#">
+<form id="create_income_form" class="col s12 create_income_form"  data-action="create" data-module="income" data-url="incomes" method="POST" action="#">
     <div id="createEditIncomeModal" class="modal">
         <div class="modal-content">
-            <h4 class="center-align mb-2">Create Income</h4>
+            <h5 class="center-align mb-2">Create Income</h5>
             <div class="row">
                 <div class="input-field col l4 m4 s12">
-                    {{ Form::select('income_category_id', $incomeCategoryList, null, ['class' => '', 'id' =>'income_category_id', 'placeholder' => 'Select Income Category', 'data-size' => 2]) }}
+                    {{ Form::select('income_category_id', $incomeCategoryList, null, ['class' => 'material-select', 'id' =>'income_category_id', 'placeholder' => 'Select Income Category', 'data-size' => 2]) }}
                     <label for="income_category_id">Income Category *</label>
                 </div>
 
@@ -33,7 +38,7 @@
                     <label>Payment Mode *</label></br>
                     @foreach($paymentModeList as $key => $value)
                         <label>
-                            <input type="radio" value="{{ $key }}" name="payment_mode_id" {{ ($key == 1) ? "checked" : "" }}>
+                            <input type="radio" class="payment_mode_id" value="{{ $key }}" name="payment_mode_id" {{ ($key == 1) ? "checked" : "" }} />
                             <span>{{ $value }}</span>
                         </label>
                     @endforeach
@@ -49,10 +54,10 @@
 
             <div class="row">
                 <div class="input-field col s6 right-align right">
-                    <a href="#!" class="modal-close btn">Close</a>
+                    <a href="#" class="modal-close btn">Close</a>
                     <button type="submit" class="btn cyan waves-effect waves-light ladda-button" data-style="zoom-in">
                         Submit
-                        <div class="ripple-container"></div>
+                        <span class="ripple-container"> </span>
                     </button>
                 </div>
             </div>
