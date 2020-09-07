@@ -5,7 +5,10 @@ class DataProvider
 {
     /**
      * This function is used to return Breadcrumb list
-     * @return Array
+     *
+     * @param string $moduleName
+     * @param string $actionName
+     * @return array
      */
     public static function getBreadcrumbList(string $moduleName, string $actionName): array
     {
@@ -54,22 +57,11 @@ class DataProvider
                 'label' => 'Expenses',
                 'url' => route('expenses.index')
             ];
+
             switch ($actionName) {
-                case 'create':
+                case 'category':
                     $breadcrumbList[] = [
-                        'label' => 'Create Expense',
-                    ];
-                    break;
-
-                case 'edit':
-                    $breadcrumbList[] = [
-                        'label' => 'Edit Expense',
-                    ];
-                    break;
-
-                case 'viewInvoice':
-                    $breadcrumbList[] = [
-                        'label' => 'View Invoice',
+                        'label' => 'Expense Category',
                     ];
                     break;
             }
@@ -106,6 +98,14 @@ class DataProvider
                 'label' => 'Incomes',
                 'url' => route('incomes.index')
             ];
+
+            switch ($actionName) {
+                case 'category':
+                    $breadcrumbList[] = [
+                        'label' => 'Income Category',
+                    ];
+                    break;
+            }
         }
         return $breadcrumbList;
     }

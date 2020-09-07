@@ -13,7 +13,8 @@ let ajaxRequest = function () {
             'notice',
             'expense',
             'income',
-            'incomeCategory'
+            'incomeCategory',
+            'expenseCategory',
         ])) {
             $(document).ajaxStop(function(){
                 window.location.reload(true);

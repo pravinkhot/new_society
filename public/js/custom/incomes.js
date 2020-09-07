@@ -1,7 +1,7 @@
 const Income = function () {
     this.bind = () => {
         $(document)
-            .on('change', '.payment_mode_id', event => {
+            .on('change', '#payment_mode_id', event => {
                 if('2' === $(event.currentTarget).val()) {
                     $('#cheque_no_container').show();
                 } else {

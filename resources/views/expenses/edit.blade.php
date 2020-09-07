@@ -84,7 +84,7 @@ $paymentModeList = DataProvider::getPaymentModeList();
                     <label for="payment_mode_id">Payment Mode *</label>
                 </div>
 
-                <div id="cheque_no_container" style="display: none;">
+                <div id="cheque_no_container" style="{{ ($expenseDetail->payment_mode_id != 2) ? 'display: none' : '' }};">
                     <div class="input-field col l4 m4 s12">
                         <input type="text" id="cheque_no" name="cheque_no" value="{{ $expenseDetail->cheque_no }}">
                         <label for="cheque_no">Cheque No. *</label>

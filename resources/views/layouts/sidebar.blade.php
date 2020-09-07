@@ -111,10 +111,26 @@ $entityList = array_flip(CommonFunction::getEntityList());
 
             @if(array_key_exists('expense', $entityList) && !empty($allEntityPermissions[$entityList['expense']]['view']))
                 <li class="bold">
-                    <a class="waves-effect waves-cyan" href="{{ route('expenses.index') }}">
+                    <a class="collapsible-header waves-effect waves-cyan">
                         <i class="nav-icon fa fa-money" aria-hidden="true"></i>
                         <span class="menu-title">Expenses</span>
                     </a>
+                    <div class="collapsible-body">
+                        <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                            <li>
+                                <a class="collapsible-body" href="{{ route('expenses.index') }}">
+                                    <i class="material-icons">radio_button_unchecked</i>
+                                    <span>Expenses</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="collapsible-body" href="{{ route('expenses.category.index') }}">
+                                    <i class="material-icons">radio_button_unchecked</i>
+                                    <span>Expense Category</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
             @endif
 

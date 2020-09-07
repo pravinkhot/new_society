@@ -47,11 +47,15 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             });
 
             Route::namespace('Expense')->group(function () {
+                //Expense Category Controller
+                Route::resource('expenses/category', 'ExpenseCategoryController', [
+                    'as' => 'expenses'
+                ]);
+
                 //Expense
                 Route::resource('expenses', 'ExpenseController');
                 Route::get('expenses/viewInvoice/{expenseId}', 'ExpenseController@viewInvoice')->name('expenses.viewInvoice');
             });
-
 
             //Notice
             Route::resource('notices', 'NoticeController');

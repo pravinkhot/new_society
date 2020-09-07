@@ -3,12 +3,12 @@
         <div class="modal-content">
             <h5 class="center-align mb-2">Create Income Category</h5>
             <div class="row">
-                <div class="input-field col l4 m4 s12">
+                <div class="input-field col l6 m6 s12">
                     <input type="text" id="name" name="name">
                     <label for="name">Name *</label>
                 </div>
 
-                <div class="col l4 m4 s12 display-inline mt-2">
+                <div class="col l6 m6 s12 display-inline mt-2">
                     <label>Status *</label><br/>
                     <label>
                         <input type="radio" value="1" name="status" checked="">

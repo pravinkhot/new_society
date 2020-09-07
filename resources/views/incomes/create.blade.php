@@ -35,13 +35,18 @@ $paymentModeList = DataProvider::getPaymentModeList();
                 </div>
 
                 <div class="col l4 m4 s12 display-inline mt-2">
-                    <label>Payment Mode *</label></br>
-                    @foreach($paymentModeList as $key => $value)
-                        <label>
-                            <input type="radio" class="payment_mode_id" value="{{ $key }}" name="payment_mode_id" {{ ($key == 1) ? "checked" : "" }} />
-                            <span>{{ $value }}</span>
-                        </label>
-                    @endforeach
+                    {{ Form::select(
+                        'payment_mode_id',
+                        $paymentModeList,
+                        null,
+                        [
+                            'class' => 'material-select payment_mode_id',
+                            'id' =>'payment_mode_id',
+                            'placeholder' => 'Select Payment Mode',
+                            'data-size' => 2
+                        ]
+                    ) }}
+                    <label for="payment_mode_id">Payment Mode *</label>
                 </div>
 
                 <div id="cheque_no_container" style="display: none;">

@@ -9,9 +9,14 @@ use App\Http\Requests\Incomes\Category\IncomeCategory as IncomeCategoryRequest;
 
 class IncomeCategoryController extends Controller
 {
+    /** @var IncomeCategoryModel $incomeCategoryModel */
     private $incomeCategoryModel;
 
-    function __construct(IncomeCategoryModel $incomeCategoryModel)
+    /**
+     * IncomeCategoryController constructor.
+     * @param IncomeCategoryModel $incomeCategoryModel
+     */
+    public function __construct(IncomeCategoryModel $incomeCategoryModel)
     {
         $this->incomeCategoryModel = $incomeCategoryModel;
     }

@@ -6,7 +6,8 @@ use App\Models\Entity as EntityModel;
 use App\Models\Roles\RoleModel;
 use App\Models\Wing as WingModel;
 use App\Models\MemberType as MemberTypeModel;
-use App\Models\ExpenseCategory as ExpenseCategoryModel;
+use App\Models\Incomes\Category\CategoryModel as IncomeCategoryModel;
+use App\Models\Expenses\Category\CategoryModel as ExpensesCategoryModel;
 
 class CommonFunction
 {
@@ -22,7 +23,7 @@ class CommonFunction
 
     /**
      * This function will return list of entity
-     * 
+     *
      * @return array
      */
     public static function getEntityList(): array
@@ -37,7 +38,7 @@ class CommonFunction
 
     /**
      * This function will return list of entity action
-     * 
+     *
      * @return array
      */
     public static function getEntityActionList(): array
@@ -49,7 +50,7 @@ class CommonFunction
 
     /**
      * This function will return list of wings
-     * 
+     *
      * @return array
      */
     public static function getWingList()
@@ -76,7 +77,8 @@ class CommonFunction
      */
     public static function getExpenseCategoryList()
     {
-        return ExpenseCategoryModel::pluck('name', 'id')->toArray();
+        $expenseCategoryModel = new ExpensesCategoryModel();
+        return $expenseCategoryModel->getExpenseCategoryWithNameAndId();
     }
 
     /**
@@ -86,14 +88,14 @@ class CommonFunction
      */
     public static function getIncomeCategoryWithNameAndId()
     {
-        $incomeCategoryModel = new \App\Models\Incomes\Category\CategoryModel();
+        $incomeCategoryModel = new IncomeCategoryModel();
         return $incomeCategoryModel->getIncomeCategoryWithNameAndId();
     }
 
     /**
      * This function is used to generate radom password
-     * @param  int|integer $length 
-     * @return string              
+     * @param  int|integer $length
+     * @return string
      */
     public static function randomPasswordGenerator(int $length = 8): string
     {
