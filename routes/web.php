@@ -63,8 +63,14 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             //Service
             Route::resource('services', 'ServiceController');
 
-            //Charge
-            Route::resource('charges', 'ChargeController');
+            Route::namespace('Charge')->group(function () {
+                //Charge bill group Controller
+                Route::resource('charges/bill_group', 'ChargeBillGroupController', [
+                    'as' => 'charges'
+                ]);
+
+                Route::resource('charges', 'ChargeController');
+            });
         });
     });
 });

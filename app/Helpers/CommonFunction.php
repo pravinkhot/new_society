@@ -8,6 +8,7 @@ use App\Models\Wing as WingModel;
 use App\Models\MemberType as MemberTypeModel;
 use App\Models\Incomes\Category\CategoryModel as IncomeCategoryModel;
 use App\Models\Expenses\Category\CategoryModel as ExpensesCategoryModel;
+use App\Models\Charges\Period\PeriodModel;
 
 class CommonFunction
 {
@@ -127,12 +128,8 @@ class CommonFunction
      */
     public static function getChargePeriodList(): array
     {
-        return [
-            1 => 'One Time',
-            2 => 'Monthly',
-            3 => 'Quarterly',
-            4 => 'Yearly'
-        ];
+        $periodModel = new PeriodModel();
+        return $periodModel->getChargePeriodWithNameAndId();
     }
 
     /**

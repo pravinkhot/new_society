@@ -15,6 +15,7 @@ let ajaxRequest = function () {
             'income',
             'incomeCategory',
             'expenseCategory',
+            'chargeBillGroup',
         ])) {
             $(document).ajaxStop(function(){
                 window.location.reload(true);
@@ -98,7 +99,13 @@ let ajaxRequest = function () {
     this.showAjaxFormValidationError = function (formId, errors) {
         $('.error').remove();
         $.each(errors.errors, function(key, value) {
-            $(formId).find('[name='+key+']').closest('div').append('<div class="error">'+value[0]+'</div>');
+            let errorKey = key.split('.');
+
+            if (errorKey.length > 1) {
+                $($(formId).find('[name="'+errorKey[0]+'[]"]')[errorKey[1]]).parent().append('<div class="error">'+value[0]+'</div>');
+            } else {
+                $(formId).find('[name='+key+']').closest('div').append('<div class="error">'+value[0]+'</div>');
+            }
         });
     }
 

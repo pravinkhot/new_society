@@ -3199,7 +3199,7 @@ optgroup,
 select,
 textarea
 {
-    font-family: 'Muli', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 ul:not(.browser-default)
@@ -5646,7 +5646,7 @@ a
 
 html
 {
-    font-family: 'Muli', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: normal;
     line-height: 1.5;
 
@@ -6989,14 +6989,16 @@ button.btn-floating
 
 .btn-small
 {
-    font-size: 1rem;
-    line-height: 32.4px;
-
-    height: 32.4px;
+    font-size: 0.8rem;
+    line-height: 30px;
+    height: 30px;
+    text-transform: none;
+    padding: 0 0.8rem;
 }
 .btn-small i
 {
-    font-size: 1.2rem;
+    font-size: 0.8rem;
+    margin-right: 5px;
 }
 
 .btn-block
