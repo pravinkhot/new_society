@@ -1,5 +1,8 @@
 <?php
+
 namespace App\Helpers;
+
+use Illuminate\Support\Str;
 
 class DataProvider
 {
@@ -16,97 +19,104 @@ class DataProvider
             'label' => 'Dashboard',
             'url' => route('dashboard')
         ];
-        if ($moduleName == 'members') {
-            $breadcrumbList[] = [
-                'label' => 'Members',
-                'url' => route('members.index')
-            ];
-            switch ($actionName) {
-                case 'create':
-                    $breadcrumbList[] = [
-                        'label' => 'Create Member',
-                    ];
-                    break;
 
-                case 'edit':
-                    $breadcrumbList[] = [
-                        'label' => 'Edit Member',
-                    ];
-                    break;
-            }
-        } else if ($moduleName == 'flats') {
-            $breadcrumbList[] = [
-                'label' => 'Flats',
-                'url' => route('flats.index')
-            ];
-            switch ($actionName) {
-                case 'create':
-                    $breadcrumbList[] = [
-                        'label' => 'Create Flat',
-                    ];
-                    break;
+        switch ($moduleName) {
+            case 'members':
+                $breadcrumbList[] = [
+                    'label' => Str::title($moduleName),
+                    'url' => route($moduleName.'.index')
+                ];
+                switch ($actionName) {
+                    case 'create':
+                        $breadcrumbList[] = [
+                            'label' => 'Create '.Str::title(Str::singular($moduleName)),
+                        ];
+                        break;
 
-                case 'edit':
-                    $breadcrumbList[] = [
-                        'label' => 'Edit Flat',
-                    ];
-                    break;
-            }
-        } else if ($moduleName == 'expenses') {
-            $breadcrumbList[] = [
-                'label' => 'Expenses',
-                'url' => route('expenses.index')
-            ];
+                    case 'edit':
+                        $breadcrumbList[] = [
+                            'label' => 'Edit '.Str::title(Str::singular($moduleName)),
+                        ];
+                        break;
+                }
+                break;
 
-            switch ($actionName) {
-                case 'category':
-                    $breadcrumbList[] = [
-                        'label' => 'Expense Category',
-                    ];
-                    break;
-            }
-        } else if ($moduleName == 'charges') {
-            $breadcrumbList[] = [
-                'label' => 'Charges',
-                'url' => route('charges.index')
-            ];
-            switch ($actionName) {
-                case 'create':
-                    $breadcrumbList[] = [
-                        'label' => 'Create Charge',
-                    ];
-                    break;
+            case 'wings':
+            case 'services':
+            case 'notices':
+                $breadcrumbList[] = [
+                    'label' => Str::title($moduleName),
+                    'url' => route($moduleName.'.index')
+                ];
+                break;
 
-                case 'edit':
+            default:
+                if ($moduleName == 'flats') {
                     $breadcrumbList[] = [
-                        'label' => 'Edit Charge',
+                        'label' => 'Flats',
+                        'url' => route('flats.index')
                     ];
-                    break;
-            }
-        } else if ($moduleName == 'services') {
-            $breadcrumbList[] = [
-                'label' => 'Services',
-                'url' => route('services.index')
-            ];
-        } else if ($moduleName == 'notices') {
-            $breadcrumbList[] = [
-                'label' => 'Notices',
-                'url' => route('notices.index')
-            ];
-        }  else if ($moduleName == 'incomes') {
-            $breadcrumbList[] = [
-                'label' => 'Incomes',
-                'url' => route('incomes.index')
-            ];
+                    switch ($actionName) {
+                        case 'create':
+                            $breadcrumbList[] = [
+                                'label' => 'Create Flat',
+                            ];
+                            break;
 
-            switch ($actionName) {
-                case 'category':
+                        case 'edit':
+                            $breadcrumbList[] = [
+                                'label' => 'Edit Flat',
+                            ];
+                            break;
+                    }
+                } else if ($moduleName == 'expenses') {
                     $breadcrumbList[] = [
-                        'label' => 'Income Category',
+                        'label' => 'Expenses',
+                        'url' => route('expenses.index')
                     ];
-                    break;
-            }
+
+                    switch ($actionName) {
+                        case 'category':
+                            $breadcrumbList[] = [
+                                'label' => 'Expense Category',
+                            ];
+                            break;
+                    }
+                } else if ($moduleName == 'charges') {
+                    $breadcrumbList[] = [
+                        'label' => 'Charges',
+                        'url' => route('charges.index')
+                    ];
+                    switch ($actionName) {
+                        case 'create':
+                            $breadcrumbList[] = [
+                                'label' => 'Create Charge',
+                            ];
+                            break;
+
+                        case 'edit':
+                            $breadcrumbList[] = [
+                                'label' => 'Edit Charge',
+                            ];
+                            break;
+                    }
+                } else if ($moduleName == 'incomes') {
+                    $breadcrumbList[] = [
+                        'label' => 'Incomes',
+                        'url' => route('incomes.index')
+                    ];
+
+                    switch ($actionName) {
+                        case 'category':
+                            $breadcrumbList[] = [
+                                'label' => 'Income Category',
+                            ];
+                            break;
+                    }
+                }
+                break;
         }
+
         return $breadcrumbList;
     }
 

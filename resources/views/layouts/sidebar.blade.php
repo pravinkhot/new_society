@@ -59,10 +59,16 @@ $entityList = array_flip(CommonFunction::getEntityList());
                 <li class="bold">
                     <a class="collapsible-header waves-effect waves-cyan ">
                         <i class="fa fa-building" aria-hidden="true"></i>
-                        <span class="menu-title">Flats</span>
+                        <span class="menu-title">Wings</span>
                     </a>
                     <div class="collapsible-body">
                         <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                            <li>
+                                <a class="collapsible-body" href="{{ route('wings.index') }}">
+                                    <i class="material-icons">radio_button_unchecked</i>
+                                    <span>Wings</span>
+                                </a>
+                            </li>
                             <li>
                                 <a class="collapsible-body" href="{{ route('flats.index') }}">
                                     <i class="material-icons">radio_button_unchecked</i>

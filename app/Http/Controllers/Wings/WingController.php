@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Wings;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 
 use App\Models\Wings\WingModel;
 use App\Http\Requests\Wings\Wing as WingRequest;
-use Illuminate\Http\Response;
 
 class WingController extends Controller
 {
@@ -50,7 +51,7 @@ class WingController extends Controller
      * Store a newly created resource in storage.
      *
      * @param WingRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function store(WingRequest $request)
     {

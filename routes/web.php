@@ -38,9 +38,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::resource('wings/flats', 'FlatController');
 
             Route::namespace('Wings')->group(function () {
-                Route::resource('wings', 'WingController', [
-                    'as' => 'flats'
-                ]);
+                Route::resource('wings', 'WingController');
             });
 
             Route::namespace('Incomes')->group(function () {

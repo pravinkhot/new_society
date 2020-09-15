@@ -3,6 +3,7 @@
 namespace App\Models\Wings;
 
 use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Builder;
 
 class WingModel extends BaseModel
 {
@@ -24,6 +25,10 @@ class WingModel extends BaseModel
         'name'
     ];
 
+    /**
+     * @param bool $excludeDeleted
+     * @return Builder
+     */
     public function newQuery($excludeDeleted = true) {
         return parent::newQuery($excludeDeleted)
             ->where([
