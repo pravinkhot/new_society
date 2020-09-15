@@ -5,8 +5,8 @@
             <input type="hidden" name="billGroupId" id="billGroupId" class="billGroupId" value="{{ $billGroupDetail->id }}" />
 
             <div class="row">
-                <div class="input-field mt0 col s12">
-                    <h5 class="left mt0"><b>Edit Bill Group</b></h5>
+                <div class="input-field mt-0 col s12">
+                    <h5 class="left mt-0"><b>Edit Bill Group</b></h5>
                     <div class="right">
                         <button type="submit" class="btn btn-small blue mr-1 waves-effect waves-light ladda-button" data-style="zoom-in">
                             <i class="fa fa-save"></i> Save Changes

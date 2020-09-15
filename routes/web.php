@@ -33,10 +33,15 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::group(['middleware' => ['checkPermission:1']], function () {
             //Member
             Route::resource('members', 'MemberController');
-            //Wing
-            Route::resource('wings', 'WingController');
+
             //Flat
-            Route::resource('flats', 'FlatController');
+            Route::resource('wings/flats', 'FlatController');
+
+            Route::namespace('Wings')->group(function () {
+                Route::resource('wings', 'WingController', [
+                    'as' => 'flats'
+                ]);
+            });
 
             Route::namespace('Incomes')->group(function () {
                 Route::resource('incomes/category', 'IncomeCategoryController', [

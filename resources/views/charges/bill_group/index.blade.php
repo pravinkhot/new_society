@@ -45,7 +45,7 @@
                                         @endforeach
 
                                         @if(isset($currentEntityPermissions['edit']) && $currentEntityPermissions['edit'] == 1)
-                                            <th>Action</th>
+                                            <th class="right">Action</th>
                                         @endif
                                     </tr>
                                     </thead>
@@ -54,10 +54,22 @@
                                         @foreach($billGroupList as $billGroup)
                                             <tr id="{{ $billGroup->id }}">
                                                 <td>{{ $billGroup->name }}</td>
+                                                <td>
+                                                    <ul class="collection with-header">
+                                                        @foreach($billGroup->particulars as $particular)
+                                                            <li class="collection-item">
+                                                                <div>
+                                                                    {{ $particular->name }}
+                                                                    <span class="secondary-content">{{ $particular->amount }}</span>
+                                                                </div>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </td>
                                                 @if(isset($currentEntityPermissions['edit']) && $currentEntityPermissions['edit'] == 1)
                                                     <td>
-                                                        <button class="btn-floating cyan editResourceBtn editBillGroupBtn ladda-button" rel="tooltip" data-original-title="Edit Bill Group" data-module="chargeBillGroup" data-id="{{ $billGroup->id }}" data-url="charges/bill_group/{{ $billGroup->id }}/edit" data-style="zoom-in">
-                                                            <i class="material-icons">edit</i>
+                                                        <button class="btn blue btn-small right editResourceBtn editBillGroupBtn ladda-button" rel="tooltip" data-original-title="Edit Bill Group" data-module="chargeBillGroup" data-id="{{ $billGroup->id }}" data-url="charges/bill_group/{{ $billGroup->id }}/edit" data-style="zoom-in">
+                                                            <i class="fa fa-edit m0"></i>
                                                         </button>
                                                     </td>
                                                 @endif

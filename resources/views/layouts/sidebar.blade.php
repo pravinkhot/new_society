@@ -55,7 +55,7 @@ $entityList = array_flip(CommonFunction::getEntityList());
                 </div>
             </li>
 
-            @if(array_key_exists('flat', $entityList) && $allEntityPermissions[$entityList['flat']]['view'])
+            @if(array_key_exists('wing', $entityList) && $allEntityPermissions[$entityList['wing']]['view'])
                 <li class="bold">
                     <a class="collapsible-header waves-effect waves-cyan ">
                         <i class="fa fa-building" aria-hidden="true"></i>
@@ -69,7 +69,7 @@ $entityList = array_flip(CommonFunction::getEntityList());
                                     <span>Flats</span>
                                 </a>
                             </li>
-                            @if($allEntityPermissions[$entityList['flat']]['add'])
+                            @if($allEntityPermissions[$entityList['wing']]['add'])
                                 <li>
                                     <a class="collapsible-body" href="{{ route('flats.create') }}">
                                         <i class="material-icons">radio_button_unchecked</i>
@@ -104,6 +104,13 @@ $entityList = array_flip(CommonFunction::getEntityList());
                                     </a>
                                 </li>
                             @endif
+
+                            <li>
+                                <a class="collapsible-body" href="{{ route('charges.bill_group.index') }}">
+                                    <i class="material-icons">radio_button_unchecked</i>
+                                    <span>Manage Bill Groups</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

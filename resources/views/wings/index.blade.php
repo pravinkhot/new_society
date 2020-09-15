@@ -3,53 +3,85 @@
 @section('mainTitle', 'Wings & Blocks')
 
 @section('content')
-	<div class="card-header card-header-icon card-header-rose d-flex">
-        <div class="card-icon">
-            <i class="material-icons">assignment</i>
+    <?php
+    $currentEntityPermissions = \Request::get('permissionDetails')['currentEntityPermissions'];
+    ?>
+    <div class="row">
+        <div class="col s12">
+            <div id="borderless-table" class="card card-tabs">
+                <div class="card-content">
+                    <div class="card-title">
+                        <div class="row">
+                            <div class="col s12 m6 l10">
+                                <h4 class="card-title">Wings & Blocks List</h4>
+                            </div>
+
+                            <div class="col s12 m6 l2">
+                                @if(isset($currentEntityPermissions['add']) && $currentEntityPermissions['add'] == 1)
+                                    <ul class="tabs">
+                                        <li class="tab col s6 p-0">
+                                            <a id="createWingButton" class="p-0 createResourceBtn ladda-button" href="#" data-module="wing" data-url="wings/create" data-style="zoom-in">
+                                                Create
+                                            </a>
+                                        </li>
+                                    </ul>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="view-borderless-table">
+                        <div class="row">
+                            <div class="col s12">
+                                <table>
+                                    <?php
+                                    $theadList = [
+                                        'Name'
+                                    ];
+                                    ?>
+                                    <thead>
+                                    <tr>
+                                        @foreach($theadList as $thead)
+                                            <th>{{ $thead }}</th>
+                                        @endforeach
+
+                                        @if(isset($currentEntityPermissions['edit']) && $currentEntityPermissions['edit'] == 1)
+                                            <th>Action</th>
+                                        @endif
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @if($wingList->count() > 0)
+                                        @foreach($wingList as $wing)
+                                            <tr id="{{ $wing->id }}">
+                                                <td>{{ $wing->name }}</td>
+
+                                                @if(isset($currentEntityPermissions['edit']) && $currentEntityPermissions['edit'] == 1)
+                                                    <td>
+                                                        <button class="btn btn-small indigo accent-3 editResourceBtn editWingBtn ladda-button" rel="tooltip" data-original-title="Edit Wing" data-module="wing" data-id="{{ $wing->id }}" data-url="wings/{{ $wing->id }}/edit" data-style="zoom-in">
+                                                            <i class="fa fa-edit m0"></i>
+                                                        </button>
+                                                    </td>
+                                                @endif
+                                            </tr>
+
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="{{ collect($theadList)->count()+1 }}" class="center-align">{{ config('custom.noResultFoundString') }}</td>
+                                        </tr>
+                                    @endif
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <h4 class="card-title ">Wings & Blocks List</h4>
-        <a  data-target="#createWingModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" href="#createWingModal" class="btn btn-primary btn-just-icon btn-sm ml-auto p-1" rel="tooltip" data-original-title="Create Wings">
-            <i class="fa fa-plus" style="padding-right: 3px;"></i>
-        </a>
     </div>
 
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table">
-                <thead class=" text-primary">
-                    <th>Society</th>
-                    <th>Wing</th>
-                    <th>Units</th>
-                    <th>Action</th>
-                </thead>
-                <tbody>
-                    @if($wingList->count() > 0)
-                        @foreach($wingList as $wing)
-                            <tr id="{{ $wing->id }}">
-                                <td>{{ $wing->society->name }}</td>
-                                <td>{{ $wing->name }}</td>
-                                <td>0</td>
-                                <td class="td-actions">
-                                    <a href="{{ route('wings.edit', ['wingId' => $wing->id]) }}" rel="tooltip" class="btn btn-info" data-original-title="Edit Wing" title=""><i class="material-icons">edit</i><div class="ripple-container"></div></a>
-                                    <button type="button" rel="tooltip" class="btn btn-danger singleDelete ladda-button" data-style="zoom-in" data-original-title="Delete Wing" title="">
-                                      <i class="material-icons">close</i>
-                                    </button>
-                                </td>
-                            </tr>
-                        @endforeach
-                    @else
-                        <tr class="text-center">
-                            <td colspan="3">{{ config('custom.noResultFoundString') }}</td>
-                        </tr>
-                    @endif
-                </tbody>
-            </table>
-
-            {{ $wingList->links() }}
-        </div>
-    </div>
-
-@include('wings.create')
+    <div id="createEditWingModalContainer"></div>
 @endsection
 
 @section('customJs')

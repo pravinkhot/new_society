@@ -2,14 +2,14 @@
     <div class="modal-content">
         <form id="createChargeBillGroupForm" class="col s12 createChargeBillGroupForm" data-action="create" data-module="chargeBillGroup" data-url="charges/bill_group" method="POST" action="#">
             <div class="row">
-                <div class="input-field mt0 col s12">
-                    <h5 class="left mt0"><b>Create New Bill Group</b></h5>
+                <div class="input-field mt-0 col s12">
+                    <h5 class="left mt-0"><b>Create New Bill Group</b></h5>
                     <div class="right">
                         <button type="submit" class="btn btn-small blue mr-1 waves-effect waves-light ladda-button" data-style="zoom-in">
                             <i class="fa fa-plus"></i> Create
                         </button>
 
-                        <button type="button" class="btn btn-small new-group-btn red accent-3 modal-close">
+                        <button type="button" class="btn btn-small red accent-3 modal-close">
                             <i class="fa fa-close"></i> Cancel
                         </button>
                     </div>

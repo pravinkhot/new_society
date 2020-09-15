@@ -52,7 +52,7 @@
     content: "\64";
 }
 
-.addParticularContainer td {
+.addParticularContainer td:not(:last-child) {
     vertical-align: top;
 }
 
@@ -64,7 +64,11 @@
     margin: 0 !important;
 }
 
-.mt0 {
+.mt-0 {
+    margin-top: 0 !important;
+}
+
+.mr-0 {
     margin-top: 0 !important;
 }
 
@@ -72,6 +76,32 @@
     margin-right:.25rem !important;
 }
 
+.pl-0 {
+    padding-left: 0 !important;
+}
+
+.pr-0 {
+    padding-right: 0 !important;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-between {
+    justify-content: space-between!important;
+}
+
 .modal-sm {
     width: 55% !important;
+}
+
+.modal .form-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal .form-title h5 {
+    font-size: 18px;
 }

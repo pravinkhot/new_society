@@ -9,6 +9,16 @@ use App\Models\Charges\BillGroup\Particular\ParticularModel;
 trait BillGroup
 {
     /**
+     * @return array
+     */
+    public function getChargeBillGroupWithNameAndId(): array
+    {
+        return self::query()
+            ->pluck('name', 'id')
+            ->toArray();
+    }
+
+    /**
      * @return mixed
      */
     public function getChargeBillGroupWithPaginate()
@@ -25,14 +35,6 @@ trait BillGroup
     public function getBillGroupDetail(int $billGroupID)
     {
         return self::findOrFail($billGroupID);
-    }
-
-    /**
-     * Get the particulars for the bill group.
-     */
-    public function particulars()
-    {
-        return $this->hasMany('App\Models\Charges\BillGroup\Particular\ParticularModel', 'bill_group_id', 'id');
     }
 
     /**

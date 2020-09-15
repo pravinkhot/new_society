@@ -1,38 +1,19 @@
-$(document).ready(function () {
-    $('#createWingModalForm').submit(function (e) {
-        e.preventDefault();
-        var formData = new FormData($("#createWingModalForm")[0]);
-        ajaxRequestObject.ajaxRequest(
-            'wings',
-            'POST',
-            formData,
-            ajaxConfigData = {
-                'cache':false,
-                'contentType': false,
-                'processData': false,
-                'moduleName': 'wing',
-                'actionFormID': '#createWingModalForm',
-                'action': 'create'
-            }
-        );
-    });
+const Wing = function () {
+    this.bind = () => {
+        $(document)
+            .on('submit', '#createEditWingModalContainer #createWingForm, #createEditWingModalContainer #editWingForm', event => {
+                event.preventDefault();
 
-    $('#editWingForm').submit(function (e) {
-        e.preventDefault();
-        var wingId = $('#wingId').val();
-        var formData = new FormData($("#editWingForm")[0]);
-        ajaxRequestObject.ajaxRequest(
-            'wings/'+wingId,
-            'POST',
-            formData,
-            ajaxConfigData = {
-                'cache':false,
-                'contentType': false,
-                'processData': false,
-                'moduleName': 'wing',
-                'actionFormID': '#editWingForm',
-                'action': 'edit'
-            }
-        );
-    });
-});
+                crudObj.createUpdateResource({
+                    'event': event,
+                });
+            });
+    };
+
+    this.init = () => {
+        this.bind();
+    };
+}
+
+window.wingObj = new Wing();
+window.wingObj.init();
