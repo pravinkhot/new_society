@@ -33,6 +33,7 @@ class WingModel extends BaseModel
         return parent::newQuery($excludeDeleted)
             ->where([
                 'society_id' => \Session::get('user.society_id')
-            ]);
+            ])
+            ->whereNull('deleted_at');
     }
 }

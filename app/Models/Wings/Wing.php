@@ -7,6 +7,16 @@ use Illuminate\Http\Request;
 trait Wing
 {
     /**
+     * @return array
+     */
+    public function getWingListWithNameAndId(): array
+    {
+        return self::query()
+            ->pluck('name', 'id')
+            ->toArray();
+    }
+
+    /**
      * @param Request $request
      * @return mixed
      */

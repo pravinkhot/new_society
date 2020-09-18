@@ -4,7 +4,7 @@ namespace App\Helpers;
 use Illuminate\Http\UploadedFile;
 use App\Models\Entity as EntityModel;
 use App\Models\Roles\RoleModel;
-use App\Models\Wing as WingModel;
+use App\Models\Wings\WingModel;
 use App\Models\MemberType as MemberTypeModel;
 use App\Models\Incomes\Category\CategoryModel as IncomeCategoryModel;
 use App\Models\Expenses\Category\CategoryModel as ExpensesCategoryModel;
@@ -54,11 +54,10 @@ class CommonFunction
      *
      * @return array
      */
-    public static function getWingList()
+    public static function getWingList(): array
     {
-        return WingModel::orderBy('name', 'ASC')
-                ->pluck('name', 'id')
-                ->toArray();
+        $wingModelObj = new WingModel();
+        return $wingModelObj->getWingListWithNameAndId();
     }
 
     /**

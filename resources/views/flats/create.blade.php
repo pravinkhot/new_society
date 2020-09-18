@@ -2,10 +2,14 @@
 
 @section('mainTitle', 'Flats')
 
-@section('content')  
+@section('content')
+
     <?php
-        $wingList = CommonFunction::getWingList();
+    use App\Helpers\CommonFunction;
+
+    $wingList = CommonFunction::getWingList();
     ?>
+
     <div class="row">
         <div class="col s12">
             <div id="borderless-table" class="card card-tabs">

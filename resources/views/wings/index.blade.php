@@ -56,13 +56,13 @@
                                             <tr id="{{ $wing->id }}">
                                                 <td>{{ $wing->name }}</td>
 
-                                                @if(isset($currentEntityPermissions['edit']) && $currentEntityPermissions['edit'] == 1)
                                                     <td>
-                                                        <button class="btn btn-small indigo accent-3 editResourceBtn editWingBtn ladda-button" rel="tooltip" data-original-title="Edit Wing" data-module="wing" data-id="{{ $wing->id }}" data-url="wings/{{ $wing->id }}/edit" data-style="zoom-in">
-                                                            <i class="fa fa-edit m0"></i>
-                                                        </button>
+                                                        @if(isset($currentEntityPermissions['edit']) && 1 === $currentEntityPermissions['edit'])
+                                                            <button class="btn btn-small indigo accent-3 editResourceBtn editWingBtn ladda-button tooltip" data-tooltip="Edit Wing" data-module="wing" data-id="{{ $wing->id }}" data-url="wings/{{ $wing->id }}/edit" data-style="zoom-in">
+                                                                <i class="fa fa-edit m0"></i>
+                                                            </button>
+                                                        @endif
                                                     </td>
-                                                @endif
                                             </tr>
 
                                         @endforeach
@@ -85,11 +85,5 @@
 @endsection
 
 @section('customJs')
-    <script type="text/javascript">
-        $(document).ready(function () {
-            deleteConfirmMsg = 'Are you sure you want to delete this wing?';
-        });
-    </script>
-
     <script src="{{ asset('js/custom/wings.js') }}"></script>
 @endsection

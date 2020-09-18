@@ -1,3 +1,18 @@
+const Common = function () {
+    this.initTooltip = () => {
+        $('.tooltip').tooltip({
+            'position': 'top',
+        });
+    };
+
+    this.init = () => {
+        this.initTooltip();
+    };
+}
+
+window.commonObj = new Common();
+window.commonObj.init();
+
 $(document).ready(function () {
     //Add active class depending upon url js
     var a_href_found_flag = false;
