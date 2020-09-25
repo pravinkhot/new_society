@@ -14,7 +14,7 @@ class CommonFunction
 {
 	/**
      * This function is used to return role list
-     * @return Array
+     * @return array
      */
     public static function getRoleList(): array
     {

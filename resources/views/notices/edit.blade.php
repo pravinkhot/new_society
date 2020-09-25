@@ -3,7 +3,22 @@
     @method('PUT')
     <div id="editNoticeModal" class="modal">
         <div class="modal-content">
-            <h5 class="center-align mb-2">Edit Notice</h5>
+            <div class="row">
+                <div class="input-field mt-0 col s12 form-title">
+                    <h5>Update Notice Information</h5>
+                    <div>
+                        <button type="submit" class="btn btn-small indigo accent-3 ladda-button" data-style="zoom-in">
+                            <i class="fa fa-save"></i>
+                            Save Changes
+                        </button>
+
+                        <button type="button" class="btn btn-small red accent-3 modal-close">
+                            <i class="fa fa-close"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col l12 m12 s12">
                     <div class="row">
@@ -45,16 +60,6 @@
                             <label for="description">Description</label>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="input-field col l6 m6 s12 right-align right">
-                    <a href="#" class="modal-close btn">Close</a>
-                    <button type="submit" class="btn cyan waves-effect waves-light ladda-button" data-style="zoom-in">
-                        Submit
-                        <span class="ripple-container"></span>
-                    </button>
                 </div>
             </div>
         </div>

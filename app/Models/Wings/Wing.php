@@ -22,9 +22,14 @@ trait Wing
      */
     public function getWingListWithPaginate(Request $request)
     {
-        $query = self::query();
         $limit = $request->limit ?? config('custom.defaultPaginationCount');
-        return $query->paginate($limit);
+
+        return self::query()
+            ->orderBy(
+                    config('custom.defaultOrderByForList.columnName'),
+                    config('custom.defaultOrderByForList.type')
+                )
+            ->paginate($limit);
     }
 
     /**

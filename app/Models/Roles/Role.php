@@ -2,8 +2,6 @@
 
 namespace App\Models\Roles;
 
-use Illuminate\Http\Request;
-
 trait Role
 {
     public function getRoleDetail(int $roleID)

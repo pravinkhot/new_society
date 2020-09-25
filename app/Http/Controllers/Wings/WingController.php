@@ -78,11 +78,11 @@ class WingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param WingRequest $request
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, int $id)
+    public function update(WingRequest $request, int $id)
     {
         return response()->json([
             'success' => true,

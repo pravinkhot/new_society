@@ -60,8 +60,8 @@
                                                     <td>{{ $expense->getCreatedByUser->full_name }}</td>
                                                     @if(isset($currentEntityPermissions['edit']) && $currentEntityPermissions['edit'] == 1)
                                                         <td>
-                                                            <button class="btn-floating cyan editResourceBtn editExpenseBtn ladda-button" rel="tooltip" data-original-title="Edit Expense" data-module="expense" data-id="{{ $expense->id }}" data-url="expenses/{{ $expense->id }}/edit" data-style="zoom-in">
-                                                                <i class="material-icons">edit</i>
+                                                            <button class="btn btn-small indigo accent-3 editResourceBtn editExpenseBtn ladda-button tooltip" data-tooltip="Edit Expense" data-module="expense" data-id="{{ $expense->id }}" data-url="expenses/{{ $expense->id }}/edit" data-style="zoom-in">
+                                                                <i class="fa fa-edit m0"></i>
                                                             </button>
                                                         </td>
                                                     @endif

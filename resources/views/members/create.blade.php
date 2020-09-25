@@ -2,8 +2,9 @@
 
 @section('mainTitle', 'Members')
 
-@section('content')  
+@section('content')
     <?php
+        use App\Helpers\CommonFunction;
         $roleList = CommonFunction::getRoleList();
     ?>
     <div class="row">
