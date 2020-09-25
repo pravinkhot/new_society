@@ -1,9 +1,25 @@
 <input type="hidden" name="serviceId" id="serviceId" class="serviceId" value="{{ $serviceDetail->id }}">
 <form id="edit_service_form" class="col s12 edit_service_form" method="POST" action="#" data-action="update" data-module="service" data-url="services/{{ $serviceDetail->id }}">
     @method('PUT')
+
     <div id="editServiceModal" class="modal">
         <div class="modal-content">
-            <h5 class="center-align mb-2">Edit Service</h5>
+            <div class="row">
+                <div class="input-field mt-0 col s12 form-title">
+                    <h5>Update Service Information</h5>
+                    <div>
+                        <button type="submit" class="btn btn-small indigo accent-3 ladda-button" data-style="zoom-in">
+                            <i class="fa fa-save"></i>
+                            Save Changes
+                        </button>
+
+                        <button type="button" class="btn btn-small red accent-3 modal-close">
+                            <i class="fa fa-close"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="input-field col l4 m4 s12">
                     <input type="text" id="name" name="name" value="{{ $serviceDetail->name }}">
@@ -18,7 +34,7 @@
                 <div class="input-field col l4 m4 s12">
                     <input type="text" id="mobile_no" name="mobile_no" value="{{ $serviceDetail->mobile_no }}">
                     <label for="mobile_no">Mobile Number *</label>
-                </div>                
+                </div>
             </div>
 
             <div class="row">
@@ -40,16 +56,6 @@
                 <div class="input-field col l6 m6 s12">
                     <textarea id="address" class="materialize-textarea" name="address" rows="3">{{ $serviceDetail->address }}</textarea>
                     <label for="address">Address</label>
-                </div>                
-            </div>
-
-            <div class="row">
-                <div class="input-field col s6 right-align right">
-                    <a href="#!" class="modal-close btn">Close</a>
-                    <button type="submit" class="btn cyan waves-effect waves-light ladda-button" data-style="zoom-in">
-                        Submit
-                        <div class="ripple-container"></div>
-                    </button>
                 </div>
             </div>
         </div>

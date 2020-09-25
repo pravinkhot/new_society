@@ -57,8 +57,8 @@
                                                     <td>{{ $service->category }}</td>
                                                     @if(isset($currentEntityPermissions['edit']) && $currentEntityPermissions['edit'] == 1)
                                                         <td>
-                                                            <button type="button" rel="tooltip" class="btn-floating cyan editServiceButton editResourceBtn ladda-button" data-original-title="Edit Service" data-module="service" data-id="{{ $service->id }}" data-url="services/{{ $service->id }}/edit" data-style="zoom-in">
-                                                                <i class="material-icons">edit</i>
+                                                            <button type="button" rel="tooltip" class="btn btn-small indigo accent-3 editServiceButton editResourceBtn ladda-button" data-tooltip="Edit Service" data-module="service" data-id="{{ $service->id }}" data-url="services/{{ $service->id }}/edit" data-style="zoom-in">
+                                                                <i class="fa fa-edit m0"></i>
                                                             </button>
                                                         </td>
                                                     @endif
