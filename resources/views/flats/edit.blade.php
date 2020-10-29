@@ -2,7 +2,7 @@
 
 @section('mainTitle', 'Flats')
 
-@section('content')  
+@section('content')
     <?php
         $wingList = CommonFunction::getWingList();
     ?>
@@ -10,18 +10,31 @@
         <div class="col s12">
             <div id="borderless-table" class="card card-tabs">
                 <div class="card-content">
-                    <div class="card-title">
-                        <div class="row">
-                            <div class="col s12 m6 l10">
-                                <h4 class="card-title">Edit Flat</h4>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="row">
                         <input type="hidden" name="flatId" id="flatId" class="flatId" value="{{ $flatDetail->id }}">
-                        <form id="edit_flat_form" class="col s12 edit_flat_form">
+                        <form id="editFlatForm" class="col s12 editFlatForm" method="POST" action="#" data-action="update" data-module="flat" data-url="wings/flats/{{ $flatDetail->id }}">
                             @method('PUT')
+
+                            <div class="card-title">
+                                <div class="row">
+                                    <div class="mb-1 col s12 form-title">
+                                        <h4 class="card-title mb-0">Update Flat Information</h4>
+
+                                        <div>
+                                            <button type="submit" class="btn btn-small indigo accent-3 ladda-button" data-style="zoom-in">
+                                                <i class="fa fa-save"></i>
+                                                Save Changes
+                                            </button>
+
+                                            <a class="btn btn-small red accent-3" href="{{ route('flats.index') }}">
+                                                <i class="fa fa-close"></i>
+                                                Cancel
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row">
                                 <div class="input-field col l4 m4 s12">
                                     <input type="text" id="flat_no" name="flat_no" value="{{ $flatDetail->flat_no }}">
@@ -47,11 +60,11 @@
 
                                 <div class="col l4 m4 s12 display-inline mt-2">
                                     <label>
-                                        <input type="radio" value="1" name="flat_status_id" {{ $flatDetail->flat_status_id == 1 ? "checked" : "" }}>
+                                        <input type="radio" value="1" name="flat_status_id" {{ (1  === $flatDetail->flat_status_id || empty($flatDetail->flat_status_id)) ? "checked" : "" }}>
                                         <span>Owner</span>
                                     </label>
                                     <label>
-                                        <input type="radio" value="2" name="flat_status_id" {{ $flatDetail->flat_status_id == 2 ? "checked" : "" }}>
+                                        <input type="radio" value="2" name="flat_status_id" {{ 2 === $flatDetail->flat_status_id ? "checked" : "" }}>
                                         <span>Rented</span>
                                     </label>
                                 </div>
@@ -71,16 +84,6 @@
                                 <div class="input-field col l4 m4 s12">
                                     <input type="text" id="owner_number" name="owner_number" value="{{ $flatDetail->owner_number }}">
                                     <label for="owner_number">Owner Mobile Number *</label>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="input-field col s6 right-align right">
-                                    <a class="btn mr-1" href="{{ route('flats.index') }}">Back</a>
-                                    <button type="submit" class="btn cyan waves-effect waves-light ladda-button" data-style="zoom-in">
-                                        Submit
-                                        <div class="ripple-container"></div>
-                                    </button>
                                 </div>
                             </div>
                         </form>

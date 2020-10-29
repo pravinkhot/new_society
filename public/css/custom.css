@@ -27,27 +27,35 @@
 .icon-event:before {
     content: "\65";
 }
+
 .icon-service:before {
     content: "\73";
 }
+
 .icon-view-document:before {
     content: "\66";
 }
+
 .icon-complaint:before {
     content: "\63";
 }
+
 .icon-accounting:before {
     content: "\61";
 }
+
 .icon-user-profile:before {
     content: "\75";
 }
+
 .icon-notice:before {
     content: "\6e";
 }
+
 .icon-skyline:before {
     content: "\62";
 }
+
 .icon-contact-details:before {
     content: "\64";
 }
@@ -60,43 +68,20 @@
     border-bottom: none;
 }
 
-.m0 {
-    margin: 0 !important;
-}
-
-.mt-0 {
-    margin-top: 0 !important;
-}
-
-.mr-0 {
-    margin-top: 0 !important;
-}
-
-.mr-1 {
-    margin-right:.25rem !important;
-}
-
-.pl-0 {
-    padding-left: 0 !important;
-}
-
-.pr-0 {
-    padding-right: 0 !important;
-}
-
-.d-flex {
-    display: flex;
-}
-
 .justify-content-between {
-    justify-content: space-between!important;
+    justify-content: space-between !important;
+}
+
+.center-align
+{
+    text-align: center !important;
 }
 
 .modal-sm {
     width: 55% !important;
 }
 
-.modal .form-title {
+form .form-title, .modal .form-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -104,4 +89,9 @@
 
 .modal .form-title h5 {
     font-size: 18px;
+}
+
+.input-field-margin {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }

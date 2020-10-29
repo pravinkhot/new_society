@@ -6,6 +6,15 @@ use Illuminate\Http\Request;
 
 trait Flat
 {
+    /**
+     * @return mixed
+     */
+    public function getFlatList()
+    {
+        return self::query()
+            ->get();
+    }
+
     public function getFlatListWithPaginate(Request $request)
     {
         $query = self::query();

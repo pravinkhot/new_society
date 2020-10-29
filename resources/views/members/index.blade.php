@@ -19,7 +19,7 @@
                                 @if(isset($currentEntityPermissions['add']) && $currentEntityPermissions['add'] == 1)
                                     <ul class="tabs">
                                         <li class="tab col s6 p-0">
-                                            <a class="p-0" href="{{ route('members.create') }}" target="_self">
+                                            <a id="createMemberButton" class="p-0" href="{{ route('members.create') }}" target="_self">
                                                 Create
                                             </a>
                                         </li>
@@ -54,14 +54,9 @@
                                                     <td>{{ $member->mobile_no }}</td>
 
                                                     <td>
-                                                        @if (\Auth::id() !== $member->id)
-                                                            <a href="{{ route('members.edit', ['member' => $member->id]) }}" rel="tooltip" class="btn-floating cyan" data-original-title="Edit Member" title="">
-                                                                <i class="material-icons">edit</i>
-                                                            </a>
-                                                            <button type="button" rel="tooltip" class="btn-floating waves-effect waves-light btn-danger singleDelete ladda-button" data-original-title="Delete" title="" data-style="zoom-in">
-                                                                <i class="material-icons dp48">delete</i>
-                                                            </button>
-                                                        @endif
+                                                        <a href="{{ route('members.edit', ['member' => $member->id]) }}" class="btn btn-small indigo accent-3 editMemberButton" rel="tooltip" data-tooltip="Edit Service">
+                                                            <i class="fa fa-edit mr-0"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             @endforeach

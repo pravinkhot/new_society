@@ -26,6 +26,7 @@ class Flat extends FormRequest
     public function rules(Request $request)
     {
         $flatID = $request->route('flat');
+
         return [
             'flat_no' => [
                 'required',
@@ -41,7 +42,6 @@ class Flat extends FormRequest
             'owner_ln' => 'required',
             'owner_number' => [
                 'required',
-                'integer',
                 'digits:10'
             ]
         ];

@@ -7,7 +7,11 @@ let ajaxRequest = function () {
     this.submitFormSuccessCallback = function (data) {
         let redirectURL = '';
         if($.inArray(data.moduleName, ['wing', 'member', 'flat']) !== -1) {
-            redirectURL = data.moduleName+'s';
+            if ('flat' === data.moduleName) {
+                redirectURL = 'wings/'+data.moduleName+'s';
+            } else {
+                redirectURL = data.moduleName+'s';
+            }
         } else if (-1 !== $.inArray(data.moduleName, [
             'service',
             'notice',

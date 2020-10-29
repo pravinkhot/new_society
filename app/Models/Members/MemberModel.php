@@ -3,11 +3,10 @@
 namespace App\Models\Members;
 
 use App\Models\BaseModel;
-use App\Models\Members\Member;
 
 class MemberModel extends BaseModel
 {
-    use Member, MemberAttribute;
+    use Member, MemberAttribute, MemberRelationship;
 
     protected $table = 'users';
 

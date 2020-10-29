@@ -57,15 +57,12 @@
                                                     <td>{{ $flat->owner_number }}</td>
                                                     <td>{{ $flat->intercom }}</td>
                                                     <td>{{ $flat->sq_foot }}</td>
-                                                    <td>{{ $flat->getFlatStatus->name }}</td>
+                                                    <td>{{ $flat->getFlatStatus->name ?? null }}</td>
                                                     @if(isset($currentEntityPermissions['edit']) && $currentEntityPermissions['edit'] == 1)
                                                         <td>
-                                                            <a href="{{ route('flats.edit', ['flat' => $flat->id]) }}" rel="tooltip" class="btn-floating cyan" data-original-title="Edit Flat" title="">
-                                                                <i class="material-icons">edit</i>
+                                                            <a href="{{ route('flats.edit', ['flat' => $flat->id]) }}" class="btn btn-small indigo accent-3 tooltip" rel="tooltip"  data-tooltip="Edit Flat">
+                                                                <i class="fa fa-edit mr-0"></i>
                                                             </a>
-                                                            {{-- <button type="button" rel="tooltip" class="btn-floating waves-effect waves-light btn-danger singleDelete ladda-button" data-original-title="Delete Flat" title="" data-style="zoom-in">
-                                                                <i class="material-icons dp48">delete</i>
-                                                            </button> --}}
                                                         </td>
                                                     @endif
                                                 </tr>

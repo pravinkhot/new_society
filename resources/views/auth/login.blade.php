@@ -21,7 +21,7 @@
                             <div class="input-field col s12">
                                 <i class="material-icons prefix pt-2">person_outline</i>
                                 <input id="email" type="text" name="email" value="{{ old('email') }}">
-                                <label for="email" class="center-align">Email</label>
+                                <label for="email" class="left-align">Email</label>
                                 @if ($errors->has('email'))
                                     <div class="error">{{ $errors->first('email') }}</div>
                                 @endif

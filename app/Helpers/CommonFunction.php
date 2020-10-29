@@ -5,6 +5,8 @@ use Illuminate\Http\UploadedFile;
 use App\Models\Entity as EntityModel;
 use App\Models\Roles\RoleModel;
 use App\Models\Wings\WingModel;
+use App\Models\Flats\FlatModel;
+use App\Models\FlatStatus\FlatStatusModel;
 use App\Models\MemberType as MemberTypeModel;
 use App\Models\Incomes\Category\CategoryModel as IncomeCategoryModel;
 use App\Models\Expenses\Category\CategoryModel as ExpensesCategoryModel;
@@ -50,6 +52,17 @@ class CommonFunction
     }
 
     /**
+     * This function is used to return flat status list
+     *
+     * @return array
+     */
+    public static function getFlatStatusList()
+    {
+        $flatStatusModel = new FlatStatusModel();
+        return $flatStatusModel->getFlatStatusWithNameAndId();
+    }
+
+    /**
      * This function will return list of wings
      *
      * @return array
@@ -58,6 +71,24 @@ class CommonFunction
     {
         $wingModelObj = new WingModel();
         return $wingModelObj->getWingListWithNameAndId();
+    }
+
+    /**
+     * This function will return list of wings
+     *
+     * @return array
+     */
+    public static function getFlatListWithWing(): array
+    {
+        $flatModelObj = new FlatModel();
+        $flatList = $flatModelObj->getFlatList();
+
+        $result = [];
+        foreach ($flatList as $flat) {
+            $result[$flat->getFlatWing->name][$flat->id] = $flat->flat_no;
+        }
+
+        return $result;
     }
 
     /**

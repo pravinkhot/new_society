@@ -35,7 +35,7 @@
                                 <table>
                                     <?php
                                     $theadList = [
-                                        'Name'
+                                        'Name', 'Particulars'
                                     ];
                                     ?>
                                     <thead>

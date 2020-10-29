@@ -26,9 +26,9 @@ class Member extends FormRequest
     public function rules(Request $request)
     {
         $memberID = $request->route('member');
+
         return [
             'first_name' => ['required','max:50'],
-            'middle_name' => ['max:50'],
             'last_name' => ['required','max:50'],
             'gender' => 'required',
             'dob' => 'required',
@@ -40,7 +40,7 @@ class Member extends FormRequest
             'mobile_no' => [
                 'required'
             ],
-            'role_id' => 'required'
+            'designation' => 'exclude_unless:isAssociationMember,1|required',
         ];
     }
 

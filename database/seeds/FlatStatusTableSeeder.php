@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-use App\Models\FlatStatus as FlatStatusModel;
+use App\Models\FlatStatusModel as FlatStatusModel;
 
 class FlatStatusTableSeeder extends Seeder
 {

@@ -9,7 +9,7 @@ trait FlatRelationship
      */
     public function getFlatStatus()
     {
-        return $this->belongsTo('App\Models\FlatStatus', 'flat_status_id');
+        return $this->belongsTo('App\Models\FlatStatus\FlatStatusModel', 'flat_status_id');
     }
 
     /**
