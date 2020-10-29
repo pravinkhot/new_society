@@ -125,7 +125,7 @@
 
                             <div class="row">
                                 <div class="col s12 m12">
-                                    <div class="card blue">
+                                    <div class="card overflow-unset blue">
                                         <div class="card-content p-0">
                                             <span class="card-title pt-2 pb-1 pl-2 pr-2 white-text">Flats Information</span>
 

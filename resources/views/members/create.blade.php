@@ -33,80 +33,104 @@
                             </div>
 
                             <div class="row">
-                                <div class="input-field col l4 m4 s12">
-                                    <input type="text" id="first_name" name="first_name" />
-                                    <label for="first_name">First Name *</label>
-                                </div>
+                                <div class="col s12 m12">
+                                    <div class="card blue">
+                                        <div class="card-content p-0">
+                                            <span class="card-title pt-2 pb-1 pl-2 pr-2 white-text">Basic Information</span>
 
-                                <div class="input-field col l4 m4 s12">
-                                    <input type="text" id="last_name" name="last_name" />
-                                    <label for="last_name">Last Name *</label>
-                                </div>
+                                            <div class="pt-2 pl-2 pr-2 white">
+                                                <div class="row">
+                                                    <div class="input-field col l4 m4 s12">
+                                                        <input type="text" id="first_name" name="first_name" />
+                                                        <label for="first_name">First Name *</label>
+                                                    </div>
 
-                                <div class="input-field-margin col l4 m4 s12 display-inline">
-                                    <label>Gender</label>
-                                    <label>
-                                        <input type="radio" value="male" name="gender" checked="" />
-                                        <span>Male</span>
-                                    </label>
-                                    <label>
-                                        <input type="radio" value="female" name="gender" />
-                                        <span>Female</span>
-                                    </label>
+                                                    <div class="input-field col l4 m4 s12">
+                                                        <input type="text" id="last_name" name="last_name" />
+                                                        <label for="last_name">Last Name *</label>
+                                                    </div>
+
+                                                    <div class="input-field-margin col l4 m4 s12 display-inline">
+                                                        <label>Gender</label>
+                                                        <label>
+                                                            <input type="radio" value="male" name="gender" checked="" />
+                                                            <span>Male</span>
+                                                        </label>
+                                                        <label>
+                                                            <input type="radio" value="female" name="gender" />
+                                                            <span>Female</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="input-field col l4 m4 s12">
+                                                        <input type="text" id="email" name="email" />
+                                                        <label for="email">Email *</label>
+                                                    </div>
+
+                                                    <div class="input-field col l4 m4 s12">
+                                                        <input type="text" id="mobile_no" name="mobile_no" />
+                                                        <label for="mobile_no">Mobile No. *</label>
+                                                    </div>
+
+                                                    <div class="input-field col l4 m4 s12">
+                                                        <input type="text" id="dob" class="datepicker" name="dob" readonly="" />
+                                                        <label for="dob">DOB *</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="input-field-margin col l4 m4 s12">
+                                                        <label>
+                                                            <input type="checkbox" id="isAssociationMember" class="filled-in isAssociationMember" name="is_association_member" value="1" />
+                                                            <span>Is Association Member</span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="input-field col l4 m4 s12 display-none" id="designationContainer">
+                                                        <input type="text" id="designation" name="designation" />
+                                                        <label for="designation">Designation *</label>
+                                                    </div>
+
+                                                    <div class="input-field-margin col l4 m4 s12">
+                                                        <label>
+                                                            <input type="checkbox" id="isAdmin" class="filled-in makeAdmin" name="is_admin" value="1" />
+                                                            <span>Make Admin</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="input-field col l4 m4 s12">
-                                    <input type="text" id="email" name="email" />
-                                    <label for="email">Email *</label>
-                                </div>
+                                <div class="col s12 m12">
+                                    <div class="card overflow-unset blue">
+                                        <div class="card-content p-0">
+                                            <span class="card-title pt-2 pb-1 pl-2 pr-2 white-text">Flats Information</span>
 
-                                <div class="input-field col l4 m4 s12">
-                                    <input type="text" id="mobile_no" name="mobile_no" />
-                                    <label for="mobile_no">Mobile No. *</label>
-                                </div>
+                                            <div class="pt-2 pl-2 pr-2 white">
+                                                <div class="row">
+                                                    <div class="col l12 m12 s12">
+                                                        <table class="addFlatContainer">
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
 
-                                <div class="input-field col l4 m4 s12">
-                                    <input type="text" id="dob" class="datepicker" name="dob" readonly="" />
-                                    <label for="dob">DOB *</label>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="input-field-margin col l4 m4 s12">
-                                    <label>
-                                        <input type="checkbox" id="isAssociationMember" class="filled-in isAssociationMember" name="is_association_member" value="1" />
-                                        <span>Is Association Member</span>
-                                    </label>
-                                </div>
-
-                                <div class="input-field col l4 m4 s12 display-none" id="designationContainer">
-                                    <input type="text" id="designation" name="designation" />
-                                    <label for="designation">Designation *</label>
-                                </div>
-
-                                <div class="input-field-margin col l4 m4 s12">
-                                    <label>
-                                        <input type="checkbox" id="isAdmin" class="filled-in makeAdmin" name="is_admin" value="1" />
-                                        <span>Make Admin</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col l12 m12 s12">
-                                    <table class="addFlatContainer">
-                                        <tbody></tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <button type="button" class="btn btn-small addFlat blue">
-                                        <i class="fa fa-plus"></i> Add Another Flat
-                                    </button>
+                                                <div class="row">
+                                                    <div class="input-field col s12">
+                                                        <button type="button" class="btn btn-small addFlat blue">
+                                                            <i class="fa fa-plus"></i> Add Another Flat
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </form>
